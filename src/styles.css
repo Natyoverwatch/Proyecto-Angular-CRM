@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400; /* Regular */
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600; /* Semi-bold */
+    src: url('./assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  }
+  
+  /* Aplicando poppins */
+  body {
+    font-family: 'Poppins', sans-serif;
+  }

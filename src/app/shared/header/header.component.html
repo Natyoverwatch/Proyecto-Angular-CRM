@@ -1,0 +1,45 @@
+<header class="bg-sky-900 text-sky-100 sticky top-0 z-10 font-bold px-4">
+    <section class="mx-auto max-w-6xl justify-between relative text-sky-100 flex items-center">
+      <a routerLink="" class="inline-flex my-4  hover:text-orange-500 cursor-pointer">
+        <img src="./assets/img/logo.png" alt="Logo" class="w-20">
+        <h1 class="text-4xl">Proyecto Estudio</h1>
+      </a>
+      <nav class="hidden lg:block space-x-6 space-y-2">
+        <a href="" class=" hover:text-orange-500 ">Quiénes somos</a>
+        <a href="" class=" hover:text-orange-500 ">Servicios</a>
+        <a href="" class=" hover:text-orange-500 ">Contacto</a>
+      </nav>
+      <a class="hidden lg:flex space-x-2 hover:text-orange-500 pr-4 cursor-pointer relative">
+        <i class="fa-solid fa-magnifying-glass text-3xl"></i>
+        <input type="text" class="mt-1 h-full w-32 bg-gray-200 rounded-r border border-gray-300 px-2 focus:outline-none focus:border-gray-500 text-sky-900" placeholder="Buscar...">
+      </a>
+      <a (click)="aModal()" class="hidden lg:flex space-x-2  hover:text-orange-500 pr-4 cursor-pointer"><i class="fa-regular fa-circle-user text-3xl"></i><p class=" mt-2"></p></a>
+    </section>
+  </header>
+  
+  @if (isModalOpen) {
+    <div class="fixed inset-0 flex items-center justify-center z-20">
+      <div class="absolute inset-0 bg-black opacity-80"></div>
+      <div class="relative bg-white p-8 rounded-lg max-w-md text-sky-900">
+        <div class="bg-sky-900 p-2 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+          <img src="./assets/img/logo.png" alt="">
+        </div>
+        <form class="login-form">
+          <div class="form-group mb-4">
+            <label class="block">Nombre de Usuario:</label>
+            <input type="text" id="name" name="name" class="border border-sky-900 rounded px-3 py-2 w-full" required>
+          </div>
+          <div class="form-group mb-4">
+            <label class="block">Contraseña:</label>
+            <input type="password" id="password" name="password" class="border border-sky-900 rounded px-3 py-2 w-full" required>
+            <p class="text-xs p-2">¿Has olvidado tu contraseña? <a class="text-orange-500">Click aqui</a></p>
+          </div>
+          <div class="flex justify-between mb-4">
+            <button type="submit" class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500">Ingresa</button>
+            <button class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500">Regístrate</button>
+          </div>
+        </form>
+        <button (click)="cModal()" class="absolute text-4xl text-sky-900 top-6 right-6 hover:text-orange-500"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  }
