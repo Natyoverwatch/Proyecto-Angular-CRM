@@ -1,91 +1,414 @@
-<header class="bg-sky-900 text-sky-100 sticky top-0 z-10 font-bold px-4">
-  <section
-    class="mx-auto max-w-6xl justify-between relative text-sky-100 flex items-center"
-  >
-    <a
-      routerLink=""
-      class="inline-flex my-4 hover:text-orange-500 cursor-pointer"
+<header class="bg-sky-900 text-sky-100 sticky top-0 z-40 font-bold px-4">
+  <section class="mx-auto max-w-6xl justify-between relative text-sky-100 flex items-center text-center">
+    <!-- botonAdminPeque -->
+    <button
+    (click)="toggleButton()"
+    [class]="
+      isButtonActive
+        ? 'inline-flex items-center p-2 text-sm text-sky-100 rounded-lg sm:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200'
+        : 'inline-flex items-center p-2 text-sm text-sky-100 rounded-lg sm:hidden  '
+    "
+    data-drawer-target="logo-sidebar"
+    data-drawer-toggle="logo-sidebar"
+    type="button"
     >
-      <img src="./assets/img/logo.png" alt="Logo" class="w-20" />
-      <h1 class="text-4xl">Proyecto Estudio</h1>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+        ></path>
+      </svg>
+    </button>
+    <!-- fin botonAdminpeque -->
+    <a href="" [class]="ifAdmin ? 'inline-flex my-4 hover:text-orange-500 mx-auto' : 'inline-flex my-4 hover:text-orange-500'">
+      <img src="./assets/img/logo.png" alt="Logo" class="sm:w-20 w-16">
+      <h1 class="text-2xl sm:text-4xl">Proyecto Estudio</h1>
     </a>
-    <nav class="hidden lg:block space-x-6 space-y-2">
-      <a href="" class="hover:text-orange-500">Quiénes somos</a>
-      <a href="" class="hover:text-orange-500">Servicios</a>
-      <a href="" class="hover:text-orange-500">Contacto</a>
-    </nav>
-    <a
-      class="hidden lg:flex space-x-2 hover:text-orange-500 pr-4 cursor-pointer relative"
+    @if (!ifAdmin) {
+      <nav class="hidden lg:block space-x-6 space-y-2">
+        <a routerLink="qsomos" class=" hover:text-orange-500 ">Quiénes somos</a>
+        <a routerLink="clientes" class=" hover:text-orange-500 ">Servicios</a>
+        <a href="#contacto" class=" hover:text-orange-500 ">Contacto</a>
+      </nav>    
+      <a class="hidden lg:flex space-x-2 hover:text-orange-500 pr-4 cursor-pointer relative">
+        <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+        <input type="text" class="h-8 w-32 bg-gray-200 rounded-r border border-gray-300 px-2 focus:outline-none focus:border-gray-500 text-sky-900" placeholder="Buscar...">
+      </a>
+      <a (click)="openModal()" class="hidden lg:flex space-x-2  hover:text-orange-500 pr-4 cursor-pointer"><i class="fa-regular fa-circle-user text-4xl"></i><p class=" mt-2"></p></a>
+    }
+    @else {
+      <div class="flex items-center">
+        <div class="flex items-center ms-3">
+          <div>
+            <button
+              type="button"
+              (click)="toggleButtonPerson()"
+              [class]="
+                isButtonActivePerson
+                  ? 'flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300'
+                  : 'flex text-sm bg-gray-800 rounded-full'
+              "
+              class=""
+              aria-expanded="false"
+              data-dropdown-toggle="dropdown-user"
+            >
+              <img
+                class="w-8 h-8 rounded-full"
+                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                alt="user photo"
+              />
+            </button>
+          </div>
+          <div
+            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+            id="dropdown-user"
+          >
+            <div class="px-4 py-3" role="none">
+              <p class="text-sm text-gray-900 dark:text-white" role="none">
+                Nombre de la persona
+              </p>
+              <p
+                class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                role="none"
+              >
+                correo de la persona
+              </p>
+            </div>
+            <ul class="py-1" role="none">
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Quienes somos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Servicios</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Contactanos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                  >Sign out</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- boton menu chiqui -->
+    <button
+      [class]="ifAdmin ? 'hidden' : 'inline-flex items-center p-2 text-sm text-sky-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden'"
+      (click)="toggleMobileMenu()"
     >
-      <i class="fa-solid fa-magnifying-glass text-3xl"></i>
-      <input
-        type="text"
-        class="mt-1 h-full w-32 bg-gray-200 rounded-r border border-gray-300 px-2 focus:outline-none focus:border-gray-500 text-sky-900"
-        placeholder="Buscar..."
-      />
-    </a>
-    <a
-      (click)="aModal()"
-      class="hidden lg:flex space-x-2 hover:text-orange-500 pr-4 cursor-pointer"
-      ><i class="fa-regular fa-circle-user text-3xl"></i>
-      <p class="mt-2"></p
-    ></a>
+    <i class="fa-solid fa-bars text-white text-xl hover:text-orange-500"></i>
+    </button>
+    <!-- fin menuchiqui -->
   </section>
 </header>
+<!-- admin menu -->
 
-@if (isModalOpen) {
-<div class="fixed inset-0 flex items-center justify-center z-20">
-  <div class="absolute inset-0 bg-black opacity-80"></div>
-  <div class="relative bg-white p-8 rounded-lg max-w-md text-sky-900">
-    <div
-      class="bg-sky-900 p-2 rounded-full w-20 h-20 flex items-center justify-center mb-4"
-    >
-      <img src="./assets/img/logo.png" alt="" />
+@if (ifAdmin) {
+  <nav
+    id="logo-sidebar"
+    class="fixed top-auto left-0 z-40 w-64 h-screen pt-24 transition-transform -translate-x-full bg-sky-900 border-r border-t border-gray-200 sm:translate-x-0"
+  >
+    <!-- bg-sky-900 text-white h-screen w-72 flex flex-col -->
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-sky-900">
+      <ul class="flex-grow space-y-2">
+        <li>
+          <a
+            href="#"
+            class="flex items-center p-2 text-sky-100 rounded-lg hover:bg-sky-100 hover:text-gray-900 group"
+          >
+            <svg
+              class="w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 22 21"
+            >
+              <path
+                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
+              />
+              <path
+                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
+              />
+            </svg>
+            <span class="ms-3">Clientes</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center w-full p-2 text-sky-100 rounded-lg hover:bg-sky-100 hover:text-gray-900 group"
+            (click)="toggleSubMenu('clients')"
+          >
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 21"
+            >
+              <path
+                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
+              />
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+              >Gestion de clientes</span
+            >
+            <svg
+              class="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </a>
+          @if(showClients){
+          <ul class="py-2 space-y-2">
+            <li>
+              <a
+                class="flex items-center w-full p-2 text-sky-100 transition duration-75 rounded-lg pl-11 group hover:bg-sky-100 hover:text-gray-900"
+                routerLink="/service1"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 17 20"
+                >
+                  <path
+                    d="M7.958 19.393a7.7 7.7 0 0 1-6.715-3.439c-2.868-4.832 0-9.376.944-10.654l.091-.122a3.286 3.286 0 0 0 .765-3.288A1 1 0 0 1 4.6.8c.133.1.313.212.525.347A10.451 10.451 0 0 1 10.6 9.3c.5-1.06.772-2.213.8-3.385a1 1 0 0 1 1.592-.758c1.636 1.205 4.638 6.081 2.019 10.441a8.177 8.177 0 0 1-7.053 3.795Z"
+                  />
+                </svg>
+                <span
+                  class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+                >
+                  Oportunidades
+                </span>
+              </a>
+              <!-- (negocio) -->
+            </li>
+            <li>
+              <a
+                class="flex items-center w-full p-2 text-sky-100 transition duration-75 rounded-lg pl-11 group hover:bg-sky-100 hover:text-gray-900"
+                routerLink="/service2"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M18 2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM2 18V7h6.7l.4-.409A4.309 4.309 0 0 1 15.753 7H18v11H2Z"
+                  />
+                  <path
+                    d="M8.139 10.411 5.289 13.3A1 1 0 0 0 5 14v2a1 1 0 0 0 1 1h2a1 1 0 0 0 .7-.288l2.886-2.851-3.447-3.45ZM14 8a2.463 2.463 0 0 0-3.484 0l-.971.983 3.468 3.468.987-.971A2.463 2.463 0 0 0 14 8Z"
+                  />
+                </svg>
+                <span
+                  class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+                >
+                  Seguimiento
+                </span>
+              </a>
+              <!-- de oportunidades -->
+            </li>
+          </ul>
+          }
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center w-full p-2 text-sky-100 rounded-lg hover:bg-sky-100 hover:text-gray-900 group"
+            (click)="toggleSubMenu('history')"
+          >
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 21"
+            >
+              <path
+                d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"
+              />
+            </svg>
+            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+              >Historial</span
+            >
+            <svg
+              class="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 4 4 4-4"
+              />
+            </svg>
+          </a>
+          @if(showHistory){
+          <ul class="py-2 space-y-2">
+            <li>
+              <a
+                class="flex items-center w-full p-2 text-sky-100 transition duration-75 rounded-lg pl-11 group hover:bg-sky-100 hover:text-gray-900"
+                routerLink="/service1"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"
+                  />
+                  <path
+                    d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"
+                  />
+                  <path
+                    d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"
+                  />
+                </svg>
+                <span
+                  class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+                >
+                  Registro
+                </span>
+              </a>
+              <!-- de interacciones -->
+            </li>
+            <li>
+              <a
+                class="flex items-center w-full p-2 text-sky-100 transition duration-75 rounded-lg pl-11 group hover:bg-sky-100 hover:text-gray-900"
+                routerLink="/service2"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                >
+                  <path
+                    d="M18 0H6a2 2 0 0 0-2 2h14v12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Z"
+                  />
+                  <path
+                    d="M14 4H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM2 16v-6h12v6H2Z"
+                  />
+                </svg>
+                <span
+                  class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+                >
+                  Visualizacion
+                </span>
+              </a>
+              <!-- de interacciones -->
+            </li>
+            <li>
+              <a
+                class="flex items-center w-full p-2 text-sky-100 transition duration-75 rounded-lg pl-11 group hover:bg-sky-100 hover:text-gray-900"
+                routerLink="/service2"
+              >
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-sky-100 transition duration-75 group-hover:text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"
+                  />
+                </svg>
+
+                <span
+                  class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap"
+                >
+                  Documentos
+                </span>
+              </a>
+              <!-- relevantes -->
+            </li>
+          </ul>
+          }
+        </li>
+      </ul>
     </div>
-    <form class="login-form">
-      <div class="form-group mb-4">
-        <label class="block">Nombre de Usuario:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          class="border border-sky-900 rounded px-3 py-2 w-full"
-          required
-        />
-      </div>
-      <div class="form-group mb-4">
-        <label class="block">Contraseña:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="border border-sky-900 rounded px-3 py-2 w-full"
-          required
-        />
-        <p class="text-xs p-2">
-          ¿Has olvidado tu contraseña? <a class="text-orange-500">Click aqui</a>
-        </p>
-      </div>
-      <div class="flex justify-between mb-4">
-        <button
-          type="submit"
-          class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500"
-        >
-          Ingresa
-        </button>
-        <button
-          class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500"
-        >
-          Regístrate
-        </button>
-      </div>
-    </form>
+  </nav>
+}
+
+<div [class]="ifAdmin ? 'sm:ml-64' : 'w-full'">
+  <ng-content></ng-content>
+  @if (isModalOpen) {
+    <app-modal [isOpen]="isModalOpen" (closeModalEvent)="onModalClose()">
+      <app-login></app-login>
+      <button (click)="onModalClose()" class="absolute text-4xl top-6 right-6 hover:text-orange-500"><i class="fa-solid fa-xmark"></i></button>
+    </app-modal>
+  }
+</div>
+
+@if (isMobileMenuOpen) {
+<div class="lg:hidden fixed inset-0 z-40 bg-gray-900 bg-opacity-80" (click)="closeMobileMenu()"></div>
+<nav class="lg:hidden fixed bottom-0 right-0 z-40 w-64 slide-in-right text-sky-100 bg-sky-900 rounded-tl-lg">
+  <div class="flex justify-end">
+    <!-- Botón para cerrar el menú -->
     <button
-      (click)="cModal()"
-      class="absolute text-4xl text-sky-900 top-6 right-6 hover:text-orange-500"
+      class="inline-flex items-center p-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+      (click)="closeMobileMenu()"
     >
-      <i class="fa-solid fa-xmark"></i>
+    <i class="fa-solid fa-xmark text-orange-500"></i>
     </button>
   </div>
-</div>
+  <div class="flex flex-col space-y-2 ml-4 mb-4">
+    <a routerLink="qsomos" class="hover:text-orange-500">Quiénes somos</a>
+    <a routerLink="clientes" class="hover:text-orange-500">Servicios</a>
+    <a href="#contacto" class="hover:text-orange-500">Contacto</a>
+    <a (click)="openModal()" class="hover:text-orange-500 pr-4 cursor-pointer"><i class="fa-regular fa-circle-user text-2xl"></i></a>
+  </div>
+</nav>
 }
