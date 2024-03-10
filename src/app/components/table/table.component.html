@@ -1,0 +1,39 @@
+<div class="overflow-x-auto">
+    <input type="text" [(ngModel)]="searchTerm" (keyup)="filterData()" placeholder="Buscar..." class="mb-2 h-8 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-900 focus:border-sky-900">
+    <table class="w-full flex flex-row my-5 text-sm sm:table text-center">
+        <thead class="text-sky-100">
+            @for (item of data; track $index) {
+            <tr class="bg-sky-900 flex flex-col sm:table-row sm:rounded-none mb-2 sm:mb-0">
+                @for (column of header; track $index) {
+                <th class="p-2 border border-sky-900">{{headerMapping[column]}}</th>
+                }
+                @if (showAction) {
+                <th class="p-2 border border-sky-900 h-12 sm:h-auto">Acciones</th>
+                }
+            </tr>
+            }
+        </thead>
+        <tbody class="flex-1 sm:flex-none">
+            @for (item of filteredData; track $index) {
+            <tr class="flex flex-col sm:table-row mb-2 sm:mb-0 md:odd:bg-slate-100 text-sky-900"> 
+                @for (column of header; track $index) {
+                <td class="p-2 border border-sky-900">{{ item[column] }}</td>
+                }
+                @if (showAction) {
+                <td class="p-2 border border-sky-900 h-12 sm:h-auto">
+                    <button class="bg-sky-900 hover:bg-green-400 hover:text-sky-900 text-white font-bold py-1 px-2 mr-1 rounded" (click)="editItemClicked(item)" ><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded" (click)="action2(item)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a (click)="openModal()" class="flex space-x-2 text-sky-900 hover:text-orange-500 pr-4 cursor-pointer w-12">
+        <i class="fa-solid fa-plus text-4xl"></i><p class=" mt-2">Agregar</p>
+    </a>
+</div>
+
+<app-modal [isOpen]="isModalOpen" (closeModalEvent)="onModalClose()">
+    <ng-content></ng-content>
+</app-modal>
