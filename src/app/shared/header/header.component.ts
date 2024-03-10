@@ -13,7 +13,7 @@ import { LoginComponent } from "../../auth/login/login.component";
 })
 export class HeaderComponent {
 
-   ifAdmin: boolean= true;
+   ifRol: boolean= true;
 
   //submenus-Admin
   // Variable para habilitar los sub menús
@@ -54,5 +54,10 @@ export class HeaderComponent {
   }
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
+  }
+
+  onLoginSuccess() {
+    // Cerrar el modal
+    this.isModalOpen = false;
   }
 }
