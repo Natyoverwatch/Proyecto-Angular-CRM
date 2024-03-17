@@ -78,13 +78,13 @@
         <div [class]="isButtonActivePerson ? 'z-50 absolute top-14 transform -translate-x-1/3 text-base list-none bg-white divide-y divide-gray-100 rounded shadow' : 'hidden' " id="dropdown-user">
           <div class="px-4 py-3" role="none"> 
             <p class="text-sm text-gray-900" role="none">
-              {{ usuario.nombre }}
+              {{ usuario?.nombre }}
             </p>
             <p
               class="text-sm font-medium text-gray-900 truncate"
               role="none"
             >
-            {{ usuario.email }}
+            {{ usuario?.email }}
             </p>
           </div>
           <ul class="py-1" role="none">
@@ -98,8 +98,8 @@
             </li>
             <li>
               <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                (click)="cerrarSesion(); toggleButtonPerson()"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:cursor-pointer"
                 role="menuitem"
                 >Cerrar Sesión</a
               >
@@ -389,7 +389,7 @@
   <ng-content></ng-content>
   @if (isModalOpen) {
   <app-modal [isOpen]="isModalOpen" (closeModalEvent)="onModalClose()">
-    <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+    <app-login (loginSuccess)="onLoginSuccess()" (registro)="onModalClose()"></app-login>
     <button
       (click)="onModalClose()"
       class="absolute text-4xl top-6 right-6 hover:text-orange-500"

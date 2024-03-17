@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { LoginComponent } from '../../auth/login/login.component';
@@ -6,6 +6,7 @@ import { PermisosDirective } from '../../core/directives/permisos/permisos.direc
 import { AutenticacionService } from '../../services/autenticacion/autenticacion.service';
 import 'flowbite';
 import { UsuarioModel } from '../../core/models/usuario.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,23 +16,44 @@ import { UsuarioModel } from '../../core/models/usuario.model';
   imports: [RouterLink, ModalComponent, LoginComponent, PermisosDirective],
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   permisos: string[] = [];
-  usuario: UsuarioModel;
+  usuario: UsuarioModel | null;
   usuarioLogueado: boolean = false;
+  private unsubscribe = new Subject<void>();
 
   constructor(private auth: AutenticacionService) {}
 
   ngOnInit(): void {
     this.actualizarPermisos();
     this.verificarEstadoLogin();
+
+    this.auth.onLogin.pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(() => {
+      this.actualizarPermisos();
+      this.verificarEstadoLogin();
+    });
+    this.auth.onLogout.pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(() => {
+      // Limpiar datos relacionados con la sesión al cerrar sesión
+      this.usuario = null;
+      this.usuarioLogueado = false;
+      this.permisos = [];
+    });;
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribirse cuando se destruye el componente
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   actualizarPermisos(): void {
     this.auth.getUsuarioActual().subscribe((usuario) => {
       if (usuario && usuario.rol) {
         this.permisos = [usuario.rol];
-        console.log('permisos', this.permisos);
       } else {
         this.permisos = [];
       }
@@ -39,9 +61,15 @@ export class HeaderComponent implements OnInit {
   }
 
   verificarEstadoLogin() {
-    this.auth.getUsuarioActual().subscribe((usuario: UsuarioModel) => {
-      this.usuario = usuario;
-      this.usuarioLogueado = usuario ? true : false;
+    this.auth.getUsuarioActual().subscribe((usuario: UsuarioModel | null) => {
+      if (usuario) {
+        this.usuario = usuario;
+        this.usuarioLogueado = true;
+      } else {
+        this.usuario = null;
+        this.usuarioLogueado = false;
+        this.permisos = [];
+      }
     });
   }
 
@@ -80,7 +108,6 @@ export class HeaderComponent implements OnInit {
   }
   toggleButtonPerson() {
     this.isButtonActivePerson = !this.isButtonActivePerson;
-    console.log('toggleButtonPerson() ejecutada');
   }
 
   //modalReutilizable
@@ -102,7 +129,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onLoginSuccess() {
-    // Cerrar el modal
     this.isModalOpen = false;
+  }
+
+  cerrarSesion(){
+    this.auth.logout();
   }
 }

@@ -19,10 +19,10 @@
             <small class="text-red-500">tiene una longitud minima</small>
           }
       }
-    <p class="text-xs p-2">¿Has olvidado tu contraseña? <a class="text-orange-500">Click aqui</a></p>
+    <p class="text-xs p-2">¿Has olvidado tu contraseña? <a class="text-orange-500" routerLink="recuperar" (click)="registrarse()">Click aqui</a></p>
   </div>
   <div class="flex justify-between mb-4">
     <button type="submit" class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500" [disabled]="!loginForm.valid">Ingresa</button>
-    <button class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500">Regístrate</button>
+    <button routerLink="registro" class="bg-sky-900 text-sky-100 rounded px-4 py-2 hover:bg-orange-500" (click)="registrarse()">Regístrate</button>
   </div>
 </form>
