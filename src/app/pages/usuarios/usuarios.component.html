@@ -1,1 +1,61 @@
-<p>usuarios works!</p>
+<section class="max-w-fit mx-auto p-6">
+    <h1 class="text-2xl text-sky-900 font-bold mb-4">Usuarios</h1>    
+    <app-table [headers]="headNames" [datos]="usuarios" [columnasMapeo]="headMap" (editar)="editarUsuario($event)"></app-table>
+</section>
+
+<app-modal [isOpen]="controlModal" (closeModalEvent)="closeModal()">
+    <div class="container mx-auto my-8 text-sky-900">
+        <div class="mx-auto bg-white p-6">
+            <h2 class="text-2xl font-bold mb-4">Editar Usuario</h2>
+            <form [formGroup]="editarForm" (Submit)="onSubmit()" class="grid grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label for="nombre" class="block font-semibold mb-1">Nombre Completo:</label>
+                    <input type="text" id="nombre" formControlName="nombre" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block font-semibold mb-1">Correo Electrónico:</label>
+                    <input type="email" id="email" formControlName="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="telefono" class="block font-semibold mb-1">Teléfono:</label>
+                    <input type="text" id="telefono" formControlName="telefono" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="direccion" class="block font-semibold mb-1">Dirección:</label>
+                    <input type="text" id="direccion" formControlName="direccion" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="tDocumento" class="block font-semibold mb-1">Tipo de Documento:</label>
+                    <select id="tDocumento" formControlName="tDocumento" class="appearance-none border rounded py-2 px-2 leading-tight" required>
+                        <option value="Cédula ciudadanía">Cédula ciudadanía</option>
+                        <option value="Cédula extranjería">Cédula extranjería</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="nDocumento" class="block font-semibold mb-1">Número de Documento:</label>
+                    <input type="text" id="nDocumento" formControlName="nDocumento" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="login" class="block font-semibold mb-1">Login:</label>
+                    <input type="text" id="login" formControlName="login" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="rol" class="block font-semibold mb-1">Rol:</label>
+                    <input type="text" id="rol" formControlName="rol" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="estado" class="block font-semibold mb-1">Estado:</label>
+                    <select id="estado" formControlName="estado" class="appearance-none border rounded py-2 px-2 leading-tight" required>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <button type="submit" class="bg-sky-900 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">Guardar Cambios</button>
+                    <button type="button" class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4" (click)="onCancel()"> Cancelar </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</app-modal>

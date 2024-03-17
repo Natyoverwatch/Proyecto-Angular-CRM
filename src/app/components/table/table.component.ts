@@ -1,56 +1,40 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
-import { ModalComponent } from "../modal/modal.component";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { ModalComponent } from '../modal/modal.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-table',
-    standalone: true,
-    templateUrl: './table.component.html',
-    styleUrl: './table.component.css',
-    imports: [ModalComponent, FormsModule]
+  selector: 'app-table',
+  standalone: true,
+  templateUrl: './table.component.html',
+  styleUrl: './table.component.css',
+  imports: [ModalComponent, FormsModule],
 })
 export class TableComponent {
-  
-  @Input() headerMapping: { [key: string]: string } = {};
-  @Input() header: string[] = [];
-  @Input() data: any[] = [];
-  @Input() showAction: Boolean = false;
-  @Output() editItem = new EventEmitter<any>();
+  @Input() datos: any[] = [];
+  @Input() headers: string[] = [];
+  @Input() columnasMapeo: { [key: string]: string } = {};
+  @Output() editar = new EventEmitter<any>();
+  @Output() eliminar = new EventEmitter<any>();
 
   searchTerm: string = '';
   filteredData: any[] = [];
 
-  isModalOpen: boolean = false;
-  
-
-  //editar  
-  editItemClicked(item: any): void {
-    this.editItem.emit(item);
-    this.isModalOpen = true;
+  editarElemento(elemento: any) {
+    this.editar.emit(elemento);
   }
 
-  //eliminar
-  action2(deleteItem: any): void {    
-    const confirmacion = confirm(`¿Estás seguro de que quieres eliminar el elemento seleccionado?`);
-      if (confirmacion) {
-        const index = this.data.indexOf(deleteItem);
-      if (index !== -1) {
-        this.data.splice(index, 1);
-      }
-    }
-  }
-
-  //modalUniversal
-  openModal() {
-    this.isModalOpen = true;
-  }
-  onModalClose() {
-    this.isModalOpen = false;
-    this.editItem.emit(null);
+  eliminarElemento(elemento: any) {
+    this.eliminar.emit(elemento);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] || changes['searchTerm']) {
+    if (changes['datos'] || changes['searchTerm']) {
       this.filterData();
     }
   }
@@ -58,17 +42,20 @@ export class TableComponent {
   //Filtro-Verificamos si el campo de busqueda esta vacio
   filterData(): void {
     if (!this.searchTerm.trim()) {
-      this.filteredData = [...this.data];
+      this.filteredData = [...this.datos];
       return;
     }
-    
+
     //Convertimos el termino a buscar en minusculas para luego hacer el filtro.
     const searchTermLower = this.searchTerm.trim().toLowerCase();
-    this.filteredData = this.data.filter(item => {
+    this.filteredData = this.datos.filter((item) => {
       for (const key in item) {
         if (Object.prototype.hasOwnProperty.call(item, key)) {
           const value = item[key];
-          if (typeof value === 'string' && value.toLowerCase().includes(searchTermLower)) {
+          if (
+            typeof value === 'string' &&
+            value.toLowerCase().includes(searchTermLower)
+          ) {
             return true;
           }
         }

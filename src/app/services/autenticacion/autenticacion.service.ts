@@ -44,7 +44,6 @@ export class AutenticacionService {
         } = resp.usuario;
 
         this.usuario = new UsuarioModel(
-          _id,
           nombre,
           email,
           telefono,
@@ -57,8 +56,9 @@ export class AutenticacionService {
           estado,
           createdAt,
           updatedAt,
+          _id,
         ); 
-        localStorage.setItem('token', resp.usuario);
+        localStorage.setItem('token', resp.token);
         return true;
       }),
       catchError((error) => {
@@ -80,4 +80,13 @@ export class AutenticacionService {
     localStorage.removeItem(`token`);
     this.router.navigateByUrl(`login`);
   }
+
+  getUsuarioActual(): Observable<UsuarioModel> {
+    return this.validateToken().pipe(
+      map(() => {
+        return this.usuario;
+      })
+    );
+  }
+
 }
