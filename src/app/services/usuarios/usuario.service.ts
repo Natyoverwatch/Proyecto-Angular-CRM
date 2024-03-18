@@ -24,12 +24,20 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) { }
 
+  crearUsuario(usuario: UsuarioModel){
+    return this.httpClient.post(`${base_url}/usuarioM`, usuario)
+  }
+
   getUsuarios(){
     return this.httpClient.get(`${base_url}/usuarioM`, this.headers)
   }
 
-  crearUsuario(usuario: UsuarioModel){
-    return this.httpClient.post(`${base_url}/usuarioM`, usuario)
+  editarUsuario(usuario: UsuarioModel) {
+    return this.httpClient.put(`${base_url}/usuarioM/${usuario._id}`, usuario, this.headers);
+  }
+
+  eliminarUsuario(id: string) {
+    return this.httpClient.delete(`${base_url}/usuarioM/${id}`, this.headers);
   }
 
 }

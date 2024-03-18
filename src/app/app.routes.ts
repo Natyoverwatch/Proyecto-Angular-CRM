@@ -4,6 +4,8 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { RecuperarComponent } from './auth/recuperar/recuperar.component';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { GuardmsgComponent } from './shared/guardmsg/guardmsg.component';
 
 export const routes: Routes = [
     {
@@ -22,11 +24,21 @@ export const routes: Routes = [
         component: RecuperarComponent,
     },
     {
+        path:'notfound',
+        title:"404",
+        component: NotfoundComponent,
+    },
+    {
+        path:'guardmsg',
+        title:"Inaccesible",
+        component: GuardmsgComponent,
+    },
+    {
         path:'usuarios',
         title:"Usuarios",
         component: UsuariosComponent,
         canActivate: [authGuard],
     },
 
-    {path: '**', redirectTo: '', pathMatch: 'full'}
+    {path: '**', redirectTo: 'notfound', pathMatch: 'full'}
 ];
