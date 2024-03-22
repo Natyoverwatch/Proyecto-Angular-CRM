@@ -1,1 +1,4 @@
-<p>oportunidades works!</p>
+<section class="mx-auto table-custom-width justify-between my-4">   
+    <h1 class="font-bold text-4xl text-center text-sky-900">Oportunidades</h1>
+    <app-table [headers]="headNames" [datos]="oportunidades" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+</section>

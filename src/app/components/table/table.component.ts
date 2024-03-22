@@ -1,42 +1,45 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { NgStyle } from '@angular/common';
+
 
 @Component({
   selector: 'app-table',
   standalone: true,
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
-  imports: [ModalComponent, FormsModule],
+  imports: [ModalComponent, FormsModule, NgStyle],
 })
 export class TableComponent {
   @Input() datos: any[] = [];
   @Input() headers: string[] = [];
   @Input() columnasMapeo: { [key: string]: string } = {};
-  @Output() editar = new EventEmitter<any>();
-  @Output() eliminar = new EventEmitter<any>();
+  @Input() acciones: { nombre: string, evento: string }[] = [];
+  @Output() accionSeleccionada = new EventEmitter<any>();
 
   searchTerm: string = '';
   filteredData: any[] = [];
-
-  editarElemento(elemento: any) {
-    this.editar.emit(elemento);
-  }
-
-  eliminarElemento(elemento: any) {
-    this.eliminar.emit(elemento);
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['datos'] || changes['searchTerm']) {
       this.filterData();
     }
+  }
+
+  ejecutarAccion(evento: any) {
+    const accion = evento.target.value;
+    const index = evento.target.parentElement.parentElement.rowIndex - 1;
+    const fila = this.filteredData[index];
+    if (accion && fila) {
+      this.accionSeleccionada.emit({ accion, fila });
+    }  
+    // Restablecer el valor del select a una cadena vacía
+    evento.target.value = '';
+  }
+
+  isSelectElement(event: Event): boolean {
+    return (event.target as HTMLElement).tagName === 'SELECT';
   }
 
   //Filtro-Verificamos si el campo de busqueda esta vacio

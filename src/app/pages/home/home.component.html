@@ -8,7 +8,8 @@
         <p>En <span class="font-bold">Order in the Room</span>, nos dedicamos a proporcionar <span class="font-bold">soluciones legales efectivas y personalizadas</span> para nuestros clientes. Con un equipo de abogados altamente capacitados y comprometidos, nos esforzamos por brindar <span class="font-bold">asesoramiento legal integral</span> en una amplia gama de áreas, desde <span class="font-bold">derecho corporativo</span> hasta <span class="font-bold">litigios civiles</span>. Nuestro enfoque centrado en el cliente y nuestra pasión por la justicia nos permiten ofrecer resultados excepcionales en cada caso que manejamos. Confía en <span class="font-bold">Order in the Room</span> para encontrar <span class="font-bold">claridad y soluciones</span> en tus asuntos legales.</p>
     </section>
     <div class="flex justify-center">
-        <button routerLink="registro" id="gradientButton" class="bg-gradient-to-r from-orange-200 to-orange-500 text-white px-4 py-2 rounded-md font-semibold mb-6 hover:text-sky-900">Regístrate aquí</button>
+        <button *appPermisos="['INVITADO']" routerLink="registro" id="gradientButton" class="bg-gradient-to-r from-orange-200 to-orange-500 text-sky-100 px-4 py-2 rounded-md font-semibold mb-6 hover:text-sky-900">Regístrate aquí</button>
+        <button *appPermisos="['GERENTE', 'SUPERVISOR', 'ASESOR', 'CLIENTE']" routerLink="nServicio" id="solicitarServicioButton" class="bg-gradient-to-r from-blue-200 to-blue-500 text-white px-4 py-2 rounded-md font-semibold mb-6 hover:text-sky-900">Solicitar Servicio</button>
     </div>
 </div>
 <div class="bg-sky-900 px-4">

@@ -6,6 +6,12 @@ import { authGuard } from './guards/auth/auth.guard';
 import { RecuperarComponent } from './auth/recuperar/recuperar.component';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { GuardmsgComponent } from './shared/guardmsg/guardmsg.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { StaffComponent } from './pages/staff/staff.component';
+import { SolicitarOportunidadComponent } from './pages/solicitar-oportunidad/solicitar-oportunidad.component';
+import { OportunidadModel } from './core/models/oportunidad.model';
+import { OportunidadesComponent } from './pages/oportunidades/oportunidades.component';
 
 export const routes: Routes = [
     {
@@ -37,6 +43,36 @@ export const routes: Routes = [
         path:'usuarios',
         title:"Usuarios",
         component: UsuariosComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'perfil',
+        title:"Perfil",
+        component: PerfilComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'clientes',
+        title:"Clientes",
+        component: ClientesComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'staff',
+        title:"EquipoTabajo",
+        component: StaffComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'nServicio',
+        title:"Nuevo Servicio",
+        component: SolicitarOportunidadComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'oportunidades',
+        title:"Oportunidades",
+        component: OportunidadesComponent,
         canActivate: [authGuard],
     },
 

@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { LoginComponent } from '../../auth/login/login.component';
 import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
 import { AutenticacionService } from '../../services/autenticacion/autenticacion.service';
 import 'flowbite';
+import { CommonModule } from '@angular/common';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -13,64 +14,45 @@ import { Subject, takeUntil } from 'rxjs';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  imports: [RouterLink, ModalComponent, LoginComponent, PermisosDirective],
+  imports: [RouterLink, ModalComponent, LoginComponent, PermisosDirective, CommonModule],
 })
 
-export class HeaderComponent implements OnInit, OnDestroy {
-  permisos: string[] = [];
-  usuario: UsuarioModel | null;
-  usuarioLogueado: boolean = false;
-  private unsubscribe = new Subject<void>();
+export class HeaderComponent implements OnInit {
+  mostrarMenu: boolean[] = [false, false, false];
+  usuario: UsuarioModel | null = null;
+  private unsubscribe$ = new Subject<void>();
 
+  abrirCerrarMenuIzq(index: number): void {
+    this.mostrarMenu[index] = !this.mostrarMenu[index];
+  }
+
+  cargarUsuario(): void {
+    const userData = localStorage.getItem('usuario');
+    if (userData) {
+      this.usuario = JSON.parse(userData);
+    }
+  }
+  
   constructor(private auth: AutenticacionService) {}
-
   ngOnInit(): void {
-    this.actualizarPermisos();
-    this.verificarEstadoLogin();
+    this.cargarUsuario();
 
     this.auth.onLogin.pipe(
-      takeUntil(this.unsubscribe)
+      takeUntil(this.unsubscribe$)
     ).subscribe(() => {
-      this.actualizarPermisos();
-      this.verificarEstadoLogin();
+      this.cargarUsuario();
     });
+
     this.auth.onLogout.pipe(
-      takeUntil(this.unsubscribe)
+      takeUntil(this.unsubscribe$)
     ).subscribe(() => {
-      // Limpiar datos relacionados con la sesión al cerrar sesión
       this.usuario = null;
-      this.usuarioLogueado = false;
-      this.permisos = [];
-    });;
+    });
   }
 
   ngOnDestroy(): void {
-    // Desuscribirse cuando se destruye el componente
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
-
-  actualizarPermisos(): void {
-    this.auth.getUsuarioActual().subscribe((usuario) => {
-      if (usuario && usuario.rol) {
-        this.permisos = [usuario.rol];
-      } else {
-        this.permisos = [];
-      }
-    });
-  }
-
-  verificarEstadoLogin() {
-    this.auth.getUsuarioActual().subscribe((usuario: UsuarioModel | null) => {
-      if (usuario) {
-        this.usuario = usuario;
-        this.usuarioLogueado = true;
-      } else {
-        this.usuario = null;
-        this.usuarioLogueado = false;
-        this.permisos = [];
-      }
-    });
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   iconos: string[] = [
@@ -87,25 +69,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ];
   randomIndex = Math.floor(Math.random() * this.iconos.length);
 
-  //submenus-Admin
-  // Variable para habilitar los sub menús
-  showHistory = false;
-  showClients = false;
-  // Funcion para los submenús
-  toggleSubMenu(entrada: string): void {
-    if (entrada === 'clients') {
-      this.showClients = !this.showClients;
-    } else if (entrada === 'history') {
-      this.showHistory = !this.showHistory;
-    }
-  }
   // Funcion para los el bg de los botones del navbar
-  isButtonActive: boolean = false;
   isButtonActivePerson: boolean = false;
-
-  toggleButton() {
-    this.isButtonActive = !this.isButtonActive;
-  }
   toggleButtonPerson() {
     this.isButtonActivePerson = !this.isButtonActivePerson;
   }
@@ -119,20 +84,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isModalOpen = false;
   }
 
-  //menupeque
-  isMobileMenuOpen: boolean = false;
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
-  closeMobileMenu() {
-    this.isMobileMenuOpen = false;
-  }
-
   onLoginSuccess() {
     this.isModalOpen = false;
   }
 
   cerrarSesion(){
     this.auth.logout();
+    this.toggleButtonPerson();
   }
 }

@@ -24,3 +24,7 @@
   html {
     scroll-behavior: smooth;
   }
+
+  .table-custom-width {
+    width: 90%;
+  }

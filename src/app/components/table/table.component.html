@@ -1,5 +1,5 @@
 <input type="text" [(ngModel)]="searchTerm" (keyup)="filterData()" placeholder="Buscar..." class="mb-2 h-8 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-900 focus:border-sky-900">
-<table class="table-auto w-full text-sm">
+<table class="w-fit text-sm">
   <thead class="bg-sky-900 text-sky-100">
     <tr>
       @for (header of headers; track header) {
@@ -15,8 +15,12 @@
           <td class="border px-4 py-2">{{ dato[header] }}</td>
         }
         <td class="border px-4 py-2 space-x-2 text-xl text-center">
-          <button (click)="editarElemento(dato)" class="text-violet-500 hover:text-green-500"><i class="fa-regular fa-pen-to-square"></i></button>
-          <button (click)="eliminarElemento(dato)" class="text-violet-500 hover:text-orange-500"><i class="fa-regular fa-trash-can"></i></button>
+          <select (change)="ejecutarAccion($event)" class="text-sm px-4 py-2 rounded-md border border-gray-300 bg-white text-sky-900 shadow-sm focus:outline-none focus:border-sky-900">
+            <option value="">Seleccionar acción...</option>
+            @for (accion of acciones; track accion) {
+              <option [value]="accion.evento" [ngStyle]="{'color': accion.nombre === 'Eliminar' ? 'red' : 'initial'}">{{ accion.nombre }}</option>
+            }
+          </select>
         </td>
       </tr>
     }

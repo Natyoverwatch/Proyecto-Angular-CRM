@@ -32,8 +32,28 @@ export class UsuariosService {
     return this.httpClient.get(`${base_url}/usuarioM`, this.headers)
   }
 
+  getUsuariosPorRol(rol: string) {
+    let url = `${base_url}/usuarioM/${rol}`;
+    if (rol === 'staff' || rol === 'equipo') {
+        url = `${base_url}/usuarioM/Staff`;
+    }
+    return this.httpClient.get(url, this.headers);
+}
+
   editarUsuario(usuario: UsuarioModel) {
     return this.httpClient.put(`${base_url}/usuarioM/${usuario._id}`, usuario, this.headers);
+  }
+
+  obtenerUsuario(id: string) {
+    return this.httpClient.get(`${base_url}/usuarioM/usuario/${id}`, this.headers);
+  }
+
+  cambiarRol(id: string, nuevoRol: string) {
+    const nuevoUsuario = { rol: nuevoRol };
+    return this.httpClient.put(`${base_url}/usuarioM/${id}`, nuevoUsuario, this.headers);
+  }
+  cambiarEstado(id: string) {
+    return this.httpClient.put(`${base_url}/usuarioM/cambiarEstado/${id}`, {}, this.headers);
   }
 
   eliminarUsuario(id: string) {

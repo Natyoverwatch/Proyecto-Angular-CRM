@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { UsuarioModel } from '../../core/models/usuario.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -16,7 +17,7 @@ export class RegistroComponent implements OnInit{
   showPassword: boolean = false;
   registroForm: FormGroup;
 
-  constructor(private userService: UsuariosService, private fb: FormBuilder){}
+  constructor(private userService: UsuariosService, private fb: FormBuilder, private router: Router){}
 
   ngOnInit(): void {
     this.regisForm();
@@ -63,6 +64,7 @@ export class RegistroComponent implements OnInit{
         next: (response: any) => {
           console.log('Usuario creado correctamente', response);
           this.registroForm.reset();
+          this.router.navigate(['']);
           // si funciona y el form es valido
         },
         error: (error) => {

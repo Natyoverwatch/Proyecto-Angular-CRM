@@ -51,8 +51,8 @@ export class AutenticacionService {
           email,
           telefono,
           direccion,
-          tipoDocumento,
-          numeroDocumento,
+          tDocumento,
+          nDocumento,
           login,
           password,
           rol,
@@ -60,14 +60,14 @@ export class AutenticacionService {
           createdAt,
           updatedAt
         } = resp.usuario;
-
+  
         this.usuario = new UsuarioModel(
           nombre,
           email,
           telefono,
           direccion,
-          tipoDocumento,
-          numeroDocumento,
+          tDocumento,
+          nDocumento,
           login,
           password,
           rol,
@@ -75,7 +75,13 @@ export class AutenticacionService {
           createdAt,
           updatedAt,
           _id,
-        ); 
+        );
+        this.usuario.direccion = '';
+        this.usuario.telefono = '';
+        this.usuario.tDocumento = '';
+        this.usuario.password = '';
+        this.usuario.nDocumento = '';
+        localStorage.setItem('usuario', JSON.stringify(this.usuario));
         localStorage.setItem('token', resp.token);
         return true;
       }),
@@ -85,27 +91,23 @@ export class AutenticacionService {
       })
     );
   }
-
+  
   login(login: LoginInterfaces) {
     return this.httpClient.post(`${base_url}/auth`, login).pipe(
       tap((resp: any) => {
         localStorage.setItem(`token`, resp.token);
-        this.loginEvent.next();
+        this.validateToken().subscribe(() => {
+          this.loginEvent.next();
+        });
       })
     );
   }
 
   logout(){
-    localStorage.removeItem(`token`);
-    this.usuario = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
     this.logoutEvent.next();
-    this.router.navigateByUrl(`login`);
-  }
-
-  getUsuarioActual(): Observable<UsuarioModel | null> {
-    return this.validateToken().pipe(
-      map(() => this.usuario)
-    );
+    this.router.navigateByUrl('');
   }
 
   recuperarContraseña(login: string, nDocumento: string): Observable<any> {

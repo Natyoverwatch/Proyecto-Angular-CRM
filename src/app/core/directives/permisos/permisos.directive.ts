@@ -41,20 +41,14 @@ export class PermisosDirective implements OnInit, OnDestroy {
   }
 
   private actualizarVista(): void {
-    this.autenticacionService
-      .getUsuarioActual()
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((usuario) => {
-        if (usuario && usuario.rol) {
-          if (this.validarPermisos(usuario.rol)) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
-          } else {
-            this.viewContainer.clear();
-          }
-        } else {
-          this.viewContainer.clear();
-        }
-      });
+    const usuarioString = localStorage.getItem('usuario'); // Cambio a localStorage
+    const usuario = usuarioString ? JSON.parse(usuarioString) : null;
+    const rol = usuario && usuario.rol ? usuario.rol : 'INVITADO';
+    if (this.validarPermisos(rol)) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainer.clear();
+    }
   }
 
   private validarPermisos(rol: string): boolean {
