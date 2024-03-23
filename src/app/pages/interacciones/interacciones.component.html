@@ -1,1 +1,4 @@
-<p>interacciones works!</p>
+<section class="mx-auto table-custom-width my-4 xl:w-1/2">  
+    <h1 class="font-bold text-4xl text-center text-sky-900 mb-4">Interacciones</h1>
+    <app-table [headers]="headNames" [datos]="interacciones" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+</section>

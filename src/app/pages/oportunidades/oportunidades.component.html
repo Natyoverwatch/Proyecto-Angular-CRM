@@ -1,4 +1,52 @@
-<section class="mx-auto table-custom-width justify-between my-4">   
-    <h1 class="font-bold text-4xl text-center text-sky-900">Oportunidades</h1>
-    <app-table [headers]="headNames" [datos]="oportunidades" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
-</section>
+<div class="grid grid-cols-1">
+    <div [class]="mostrarInteracciones ? 'col-span-1 overflow-y-auto h-4/5' : 'col-span-1 overflow-y-auto h-fit' ">
+        <section class="mx-auto table-custom-width justify-between mt-4">   
+            <h1 class="font-bold text-4xl text-center text-sky-900">Oportunidades</h1>
+            <app-table [headers]="headNames" [datos]="oportunidades" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+        </section>
+    </div>
+    @if (mostrarInteracciones) {
+    <div class=" mx-auto w-1/2 col-span-1 overflow-y-auto h-fit -mt-24 mb-10">
+        <section class="table-custom-width justify-between">   
+            <h1 class="font-bold text-2xl text-center text-sky-900">Interacciones Relacionadas</h1>
+            <app-table [headers]="headNamesInt" [datos]="interacciones" [columnasMapeo]="headMapInt" [acciones]="accionesInt" (accionSeleccionada)="ejecutarAccionInt($event)"></app-table>
+            <button (click)="mostrarInteracciones=false" class="px-4 py-2 bg-sky-900 text-white hover:bg-green-500 transition-colors duration-300 my-2">Cerrar Interacciones</button>
+        </section>
+    </div>
+    }
+</div>
+
+<app-modal [isOpen]="modalAbierto === 'modal4'" (closeModalEvent)="cerrarModal()">
+    <div class="flex flex-col items-center justify-center h-full">
+        <div class="text-sky-900 font-bold text-center">
+          <p>¿Está seguro de que desea eliminar esta oportunidad?</p>
+          <p class="text-lg text-orange-500">{{ oportunidad?.nomOportunidad }}</p>
+        </div>
+        <div class="mt-4">
+          <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2" (click)="eliminarOportunidad(oportunidad)">Confirmar</button>
+          <button class="bg-sky-900 hover:bg-green-500 text-white font-bold py-2 px-4 rounded" (click)="cerrarModal()">Cancelar</button>
+        </div>
+    </div>    
+</app-modal>
+
+<app-modal [isOpen]="modalAbierto === 'modal3'" (closeModalEvent)="cerrarModal()">
+    <div class="flex flex-col items-center justify-center h-full">
+        <div class="text-sky-900 font-bold text-center">
+            <p>Selecciona el nuevo estado para:</p>
+            <p class="text-lg text-orange-500">{{ oportunidad?.nomOportunidad }}</p>
+        </div>
+        <div class="mt-4 flex flex-col items-center">
+            <select class="py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-indigo-500" [(ngModel)]="nuevoEstadoOpor">
+                <option value="Sin gestor">Sin gestor</option>
+                <option value="En proceso">En proceso</option>
+                <option value="En pausa">En pausa</option>
+                <option value="Finalizada">Finalizada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+            <div class="mt-4">
+                <button class="bg-sky-900 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-2" (click)="cambiarEstadoOpor(oportunidad, nuevoEstadoOpor)">Confirmar</button>
+                <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="cerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>    
+</app-modal>

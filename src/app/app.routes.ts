@@ -12,6 +12,8 @@ import { StaffComponent } from './pages/staff/staff.component';
 import { SolicitarOportunidadComponent } from './pages/solicitar-oportunidad/solicitar-oportunidad.component';
 import { OportunidadModel } from './core/models/oportunidad.model';
 import { OportunidadesComponent } from './pages/oportunidades/oportunidades.component';
+import { InteraccionesComponent } from './pages/interacciones/interacciones.component';
+import { AsignarOportunidadComponent } from './pages/asignar-oportunidad/asignar-oportunidad.component';
 
 export const routes: Routes = [
     {
@@ -73,6 +75,18 @@ export const routes: Routes = [
         path:'oportunidades',
         title:"Oportunidades",
         component: OportunidadesComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'interacciones',
+        title:"Interacciones",
+        component: InteraccionesComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'asignar',
+        title:"Asignación",
+        component: AsignarOportunidadComponent,
         canActivate: [authGuard],
     },
 

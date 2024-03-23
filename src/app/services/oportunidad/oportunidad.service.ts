@@ -32,12 +32,28 @@ export class OportunidadService {
     return this.httpClient.get(`${base_url}/oportunidad`, this.headers)
   }
 
-  /* editarUsuario(usuario: UsuarioModel) {
-    return this.httpClient.put(`${base_url}/usuarioM/${usuario._id}`, usuario, this.headers);
-  } */
+  getInteraccion(){
+    return this.httpClient.get(`${base_url}/oportunidad/interacciones`, this.headers)
+  }
 
-  /* eliminarUsuario(id: string) {
-    return this.httpClient.delete(`${base_url}/usuarioM/${id}`, this.headers);
-  } */
+  getSinGestor(){
+    return this.httpClient.get(`${base_url}/oportunidad/sin-gestor`, this.headers)
+  }
+
+  asignarGestor(idOpor: string , usuarioGestor: string) {
+    return this.httpClient.put(`${base_url}/oportunidad/asignar/${idOpor}`, {usuarioGestor: usuarioGestor}, this.headers);
+  }
+
+  editarOportunidad(oportunidad: OportunidadModel) {
+    return this.httpClient.put(`${base_url}/oportunidad/${oportunidad._id}`, oportunidad, this.headers);
+  }
+
+  editarEstadoOpor(oporId: string ,estado: string){
+    return this.httpClient.put(`${base_url}/oportunidad/${oporId}`, {estado: estado}, this.headers);
+  }
+
+  eliminarOportunidad(id: string) {
+    return this.httpClient.delete(`${base_url}/oportunidad/${id}`, this.headers);
+  }
 
 }
