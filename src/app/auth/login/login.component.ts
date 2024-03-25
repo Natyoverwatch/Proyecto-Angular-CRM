@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AutenticacionService } from '../../services/autenticacion/autenticacion.service';
 import { Router, RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -45,14 +46,23 @@ export class LoginComponent implements OnInit{
     this.autenticacionService.login(data).subscribe({
       next: (resp: any) => {
         if (resp && resp.usuario) {
-          const { } = resp.usuario;
           this.router.navigateByUrl('');
           this.loginSuccess.emit();
           this.loginForm.reset();
+          Swal.fire({
+            icon: "success",
+            title: resp.usuario.login,
+            text: "Bienvenido",
+          });
         }
       },
       error: (error: any) => {
         console.error(error.error.msg);
+        Swal.fire({
+          icon: "error",
+          title: "Algo salió mal",
+          text: error.error.msg,
+        });
       },
     });
   }

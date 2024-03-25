@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { OportunidadModel } from '../../core/models/oportunidad.model';
+import { InteraccionModel } from '../../core/models/interaccion.model';
 
 const base_url = environment.base_url;
 
@@ -32,10 +33,6 @@ export class OportunidadService {
     return this.httpClient.get(`${base_url}/oportunidad`, this.headers)
   }
 
-  getInteraccion(){
-    return this.httpClient.get(`${base_url}/oportunidad/interacciones`, this.headers)
-  }
-
   getSinGestor(){
     return this.httpClient.get(`${base_url}/oportunidad/sin-gestor`, this.headers)
   }
@@ -44,8 +41,8 @@ export class OportunidadService {
     return this.httpClient.put(`${base_url}/oportunidad/asignar/${idOpor}`, {usuarioGestor: usuarioGestor}, this.headers);
   }
 
-  editarOportunidad(oportunidad: OportunidadModel) {
-    return this.httpClient.put(`${base_url}/oportunidad/${oportunidad._id}`, oportunidad, this.headers);
+  editarOportunidad(cambios: any, oportunidadId: string) {
+    return this.httpClient.put(`${base_url}/oportunidad/${oportunidadId}`, cambios, this.headers);
   }
 
   editarEstadoOpor(oporId: string ,estado: string){
@@ -54,6 +51,22 @@ export class OportunidadService {
 
   eliminarOportunidad(id: string) {
     return this.httpClient.delete(`${base_url}/oportunidad/${id}`, this.headers);
+  }
+
+  getInteraccion(){
+    return this.httpClient.get(`${base_url}/oportunidad/interacciones`, this.headers)
+  }
+
+  crearInteraccion(interaccion: InteraccionModel){
+    return this.httpClient.post(`${base_url}/interaccion`, interaccion, this.headers)
+  }
+
+  editarInteraccion(interaccion: InteraccionModel, interaccionid: string) {
+    return this.httpClient.put(`${base_url}/interaccion/${interaccionid}`, interaccion, this.headers);
+  }
+
+  eliminarInteraccion(id: string) {
+    return this.httpClient.delete(`${base_url}/interaccion/${id}`, this.headers);
   }
 
 }

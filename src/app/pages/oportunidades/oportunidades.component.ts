@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TableComponent } from "../../components/table/table.component";
 import { OportunidadModel } from '../../core/models/oportunidad.model';
 import { OportunidadService } from '../../services/oportunidad/oportunidad.service';
 import { format } from 'date-fns';
 import { InteraccionModel } from '../../core/models/interaccion.model';
 import { ModalComponent } from "../../components/modal/modal.component";
-import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { UsuarioModel } from '../../core/models/usuario.model';
+import { UsuariosService } from '../../services/usuarios/usuario.service';
 
 @Component({
     selector: 'app-oportunidades',
@@ -16,13 +18,19 @@ import { FormsModule } from '@angular/forms';
     imports: [TableComponent, ModalComponent, FormsModule]
 })
 export class OportunidadesComponent implements OnInit {
+  @ViewChild('newOpor') opor: ElementRef<HTMLFormElement>;
+  @ViewChild('oporEdit') form: ElementRef<HTMLFormElement>;
+  usuarios: UsuarioModel[] = [];
   oportunidades: OportunidadModel[]=[];
   oportunidad: OportunidadModel | null = null;
+  nuevaOportunidad:  OportunidadModel = new OportunidadModel('', '', 'Sin gestor', '', null, '', []);
   interacciones: InteraccionModel[]=[];
-  interaccion: InteraccionModel | null = null;
+  interaccion: InteraccionModel;
   nuevoEstadoOpor: string= "";
+  refInteraccionOriginal: string = '';
   mostrarInteracciones: boolean = false;
-  modalAbierto: 'modal1' | 'modal2' | 'modal3' | 'modal4' | 'modal5' | 'modal6' | 'modal7' | 'modal8' | null = null;
+  editar: boolean = false;
+  modalAbierto: 'modal1' | 'modal2' | 'modal3' | 'modal4' | 'modal5' | 'modal6' | null = null;
 
   constructor(private getOpor: OportunidadService, private userServ: UsuariosService){}
 
@@ -64,17 +72,17 @@ export class OportunidadesComponent implements OnInit {
     switch (accion) {
       case 'editar':
         this.oportunidad = fila;
+        this.abrirModal2();
         break;
       case 'crearInteraccion':
         this.oportunidad = fila;
+        this.abrirModal1();
         break;
       case 'consInteraccion':
         this.oportunidad = fila;
         if (this.oportunidad?._id) {
           this.obtenerInteraccionesDeOportunidadSeleccionada(this.oportunidad._id);
-        } else {
-          console.error('ID de oportunidad no válido');
-        };
+        }
         break;
       case 'eliminar':
         this.oportunidad = fila;
@@ -90,7 +98,15 @@ export class OportunidadesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerUsuarios();
     this.obtenerOportunidades();
+    this.interaccion = this.interaccion = new InteraccionModel('', '', '');;
+  }
+
+  obtenerUsuarios(): void {
+    this.userServ.getUsuarios().subscribe((data: any) => {
+      this.usuarios = data.usuarios;
+    });
   }
 
   obtenerOportunidades() {
@@ -159,23 +175,22 @@ export class OportunidadesComponent implements OnInit {
 
   headNamesInt: string[] = [
     'refInteraccion',
-    'descripcion',
     'accion',
+    'descripcion',
     'createdAt',
     'updatedAt',
   ];
 
   headMapInt: { [key: string]: string } = {
     refInteraccion: 'Asesor encargado',
-    descripcion: 'Descripción',
     accion: 'Accion',
+    descripcion: 'Descripción',
     createdAt: 'F. Creacion',
     updatedAt: 'F. Modificado',
   };
 
   accionesInt: { nombre: string, evento: string }[] = [
     { nombre: 'Editar', evento: 'editarInt' },
-    { nombre: 'Cambiar accion', evento: 'cAccion' },
     { nombre: 'Eliminar', evento: 'eliminarInt' }
   ];
 
@@ -185,12 +200,12 @@ export class OportunidadesComponent implements OnInit {
     switch (accion) {
       case 'editarInt':
         this.interaccion = fila;
-        break;
-      case 'cAccion':
-        this.interaccion = fila;
+        this.abrirModal1();
+        this.editar=true;
         break;
       case 'eliminarInt':
         this.interaccion = fila;
+        this.abrirModal6();
         break;
       default:
         break;
@@ -223,12 +238,155 @@ export class OportunidadesComponent implements OnInit {
   }
 
   transformarInteracciones(interacciones: any[]): any[] {
-    return interacciones.map((interaccion) => ({
-        ...interaccion,
-        refInteraccion:  this.oportunidad?.usuarioGestor || '',
-        createdAt: interaccion.createdAt ? this.formatDate(interaccion.createdAt.toString()) : '',
-        updatedAt: interaccion.updatedAt ? this.formatDate(interaccion.updatedAt.toString()) : '',
-    }));
+    return interacciones.map((interaccion) => {
+        this.refInteraccionOriginal = interaccion.refInteraccion;
+        return {
+            ...interaccion,
+            refInteraccion: this.oportunidad?.usuarioGestor || '',
+            createdAt: interaccion.createdAt ? this.formatDate(interaccion.createdAt.toString()) : '',
+            updatedAt: interaccion.updatedAt ? this.formatDate(interaccion.updatedAt.toString()) : '',
+        };
+    });
+  }
+
+  guardarCambiosOpor(): void {
+    if (this.oportunidad && this.oportunidad._id) {
+      const cambios: any = {
+        nomOportunidad: this.oportunidad.nomOportunidad,
+        descripcion: this.oportunidad.descripcion,
+        estado: this.oportunidad.estado
+      };  
+      this.getOpor.editarOportunidad(cambios, this.oportunidad._id).subscribe({
+        next: (resp: any) => {
+          this.obtenerOportunidades();
+          this.form.nativeElement.reset();
+          this.cerrarModal();
+          Swal.fire({
+            title: "Cambios guardados exitosamente",
+            text: resp.msg,
+            icon: "success"
+          });
+        },
+        error: (error) => {
+          console.error('Error al guardar cambios:', error);
+        }
+      });
+    }
+  }
+
+  crearInteraccion(interaccion: InteraccionModel): void {
+    if (this.oportunidad && this.oportunidad._id) {
+        const idOportunidad: string = this.oportunidad._id;
+        // Completar los datos del formulario con el ID de la oportunidad
+        const datosFormulario: InteraccionModel = {
+            refInteraccion: idOportunidad,
+            accion: interaccion.accion,
+            descripcion: interaccion.descripcion
+        };
+
+        // Llamar al servicio para crear la interacción con los datos completos del formulario
+        this.getOpor.crearInteraccion(datosFormulario).subscribe({
+            next: (resp: any) => {
+                this.obtenerOportunidades();
+                this.form.nativeElement.reset();
+                this.cerrarModal();
+                Swal.fire({
+                    title: "Interaccion creada exitosamente",
+                    text: resp.msg,
+                    icon: "success"
+                });
+            },
+            error: (error) => {
+                console.error('Error al guardar cambios:', error);
+            }
+        });
+    } else {
+        console.error('La oportunidad no tiene un ID definido.');
+    }
+  }
+
+  nuevaOpor() {
+    if (this.nuevaOportunidad) {
+      this.getOpor.crearOportunidad(this.nuevaOportunidad).subscribe({
+        next: (resp: any) => {
+            this.obtenerOportunidades();
+            this.opor.nativeElement.reset();
+            this.cerrarModal();
+            Swal.fire({
+                title: "oportunidad creada exitosamente",
+                text: resp.msg,
+                icon: "success"
+            });
+        },
+        error: (error) => {
+          Swal.fire({
+            title: "no se pudo crear la oportunidad",
+            text: error.error.msg,
+            icon: "error"
+        });
+        }
+    });
+    }
+  }
+
+  guardarCambiosInt() {
+    if (this.interaccion && this.interaccion._id) {
+        const cambios: any = {
+            refInteraccion: this.refInteraccionOriginal,
+            descripcion: this.interaccion.descripcion,
+            accion: this.interaccion.accion
+        };
+        this.getOpor.editarInteraccion(cambios, this.interaccion._id).subscribe({
+            next: (resp: any) => {
+                this.obtenerOportunidades();
+                this.cerrarModal();
+                this.mostrarInteracciones=false;
+                this.form.nativeElement.reset();
+                Swal.fire({
+                    title: "Interaccion guardada exitosamente",
+                    text: resp.msg,
+                    icon: "success"
+                });
+            },
+            error: (error) => {
+                Swal.fire({
+                    title: "No se pudo editar la interaccion",
+                    text: error.error.msg,
+                    icon: "error"
+                });
+            }
+        });
+    }    
+  }
+
+  eliminarInteraccion(interaccion: InteraccionModel | null): void {
+    if (interaccion?._id) {
+        this.getOpor.eliminarInteraccion(interaccion._id).subscribe({
+            next: (resp: any) => {
+                this.obtenerOportunidades();
+                this.cerrarModal();
+                this.mostrarInteracciones=false;
+                Swal.fire({
+                  title: "Interaccion eliminada exitosamente",
+                  text: resp.msg,
+                  icon: "success"
+              });
+            },
+            error: (error) => {
+              Swal.fire({
+                title: "No se pudo eliminar la interaccion",
+                text: error.error.msg,
+                icon: "error"
+              });
+            },
+        });
+      }
+  }
+
+  onCancel(): void {
+    this.cerrarModal();
+    this.opor.nativeElement.reset();
+    this.editar=false;
   }
 
   abrirModal1(): void {
@@ -248,12 +406,6 @@ export class OportunidadesComponent implements OnInit {
   }
   abrirModal6(): void {
     this.modalAbierto = 'modal6';
-  }
-  abrirModal7(): void {
-    this.modalAbierto = 'modal7';
-  }
-  abrirModal8(): void {
-    this.modalAbierto = 'modal8';
   }
   cerrarModal(): void {
     this.modalAbierto = null;
