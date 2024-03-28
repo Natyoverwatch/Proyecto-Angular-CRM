@@ -306,26 +306,43 @@ export class OportunidadesComponent implements OnInit {
   }
 
   nuevaOpor() {
+    // este es el mensaje de carga
+    Swal.fire({
+      title: 'Creando oportunidad...',
+      allowOutsideClick: false,  
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading(); // Mostrar el indicador de carga
+      }
+    });
+  
     if (this.nuevaOportunidad) {
       this.getOpor.crearOportunidad(this.nuevaOportunidad).subscribe({
         next: (resp: any) => {
-            this.obtenerOportunidades();
-            this.opor.nativeElement.reset();
-            this.cerrarModal();
-            Swal.fire({
-                title: "oportunidad creada exitosamente",
-                text: resp.msg,
-                icon: "success"
-            });
+          // Cerrar mensaje de carga
+          Swal.close();
+  
+          Swal.fire({
+            title: 'Oportunidad creada exitosamente',
+            text: resp.msg,
+            icon: 'success'
+          });
+  
+          this.obtenerOportunidades();
+          this.opor.nativeElement.reset();
+          this.cerrarModal();
         },
         error: (error) => {
+          // Cerrar mensaje de carga
+          Swal.close();
+  
           Swal.fire({
-            title: "no se pudo crear la oportunidad",
+            title: 'No se pudo crear la oportunidad',
             text: error.error.msg,
-            icon: "error"
-        });
+            icon: 'error'
+          });
         }
-    });
+      });
     }
   }
 

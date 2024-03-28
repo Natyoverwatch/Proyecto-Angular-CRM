@@ -10,10 +10,10 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { StaffComponent } from './pages/staff/staff.component';
 import { SolicitarOportunidadComponent } from './pages/solicitar-oportunidad/solicitar-oportunidad.component';
-import { OportunidadModel } from './core/models/oportunidad.model';
 import { OportunidadesComponent } from './pages/oportunidades/oportunidades.component';
 import { InteraccionesComponent } from './pages/interacciones/interacciones.component';
 import { AsignarOportunidadComponent } from './pages/asignar-oportunidad/asignar-oportunidad.component';
+import { ChartsComponent } from './pages/charts/charts.component';
 
 export const routes: Routes = [
     {
@@ -87,6 +87,12 @@ export const routes: Routes = [
         path:'asignar',
         title:"Asignación",
         component: AsignarOportunidadComponent,
+        canActivate: [authGuard],
+    },
+    {
+        path:'charts',
+        title:"Graficos",
+        component: ChartsComponent,
         canActivate: [authGuard],
     },
 
