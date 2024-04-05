@@ -10,10 +10,27 @@
       <a href="#nservicios" class="hover:text-orange-500">Servicios</a>
       <a href="#contacto" class="hover:text-orange-500">Contacto</a>
     </nav>
+<<<<<<< HEAD
        
     <a *appPermisos="['INVITADO']"
       (click)="openModal()"
       class="flex space-x-2 hover:text-orange-500  cursor-pointer"
+=======
+    <a
+      class="hidden lg:flex space-x-2 hover:text-orange-500 pr-4 cursor-pointer relative"
+    >
+      <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+      <input
+        type="text"
+        class="h-8 w-32 bg-gray-200 rounded-r border border-gray-300 px-2 focus:outline-none focus:border-gray-500 text-sky-900"
+        placeholder="Buscar..."
+      />
+    </a>
+   
+    <a *appPermisos="['INVITADO']"
+      (click)="openModal()"
+      class="hidden lg:flex space-x-2 hover:text-orange-500  cursor-pointer"
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       ><i class="fa-regular fa-circle-user text-4xl"></i>
       <p class="mt-2"></p
     ></a>

@@ -3,7 +3,10 @@ import { UsuarioModel } from '../../core/models/usuario.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { format } from 'date-fns';
+<<<<<<< HEAD
 import Swal from 'sweetalert2';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
   selector: 'app-base-usuarios',
@@ -45,29 +48,51 @@ export class BaseUsuariosComponent implements OnInit {
   headNames: string[] = [
     'nombre',
     'email',
+<<<<<<< HEAD
     'celular',
     'direccion',
     'tipoDocumento',
     'numeroDocumento',
+=======
+    'telefono',
+    'direccion',
+    'tDocumento',
+    'nDocumento',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     'login',
     'rol',
     'estado',
     'createdAt',
+<<<<<<< HEAD
     'updateAt',
+=======
+    'updatedAt',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   ];
 
   headMap: { [key: string]: string } = {
     nombre: 'Nombre',
     email: 'Correo Electrónico',
+<<<<<<< HEAD
     celular: 'Teléfono',
     direccion: 'Dirección',
     tipoDocumento: 'Tipo Documento',
     numeroDocumento: 'Número Documento',
+=======
+    telefono: 'Teléfono',
+    direccion: 'Dirección',
+    tDocumento: 'Tipo Documento',
+    nDocumento: 'Número Documento',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     login: 'Nombre de Usuario',
     rol: 'Rol',
     estado: 'Estado',
     createdAt: 'F. Creacion',
+<<<<<<< HEAD
     updateAt: 'F. Modificado',
+=======
+    updatedAt: 'F. Modificado',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   };
 
   acciones: { nombre: string, evento: string }[] = [
@@ -107,15 +132,26 @@ export class BaseUsuariosComponent implements OnInit {
   }
 
   transformarUsuarios(usuarios: UsuarioModel[]): any[] {
+<<<<<<< HEAD
     return usuarios.map((usuario) => ({
+=======
+    return usuarios
+      .map((usuario) => ({
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         ...usuario,
         estado: usuario.estado ? 'Activo' : 'Inactivo',
         createdAt: usuario.createdAt
           ? this.formatDate(usuario.createdAt.toString())
           : '',
+<<<<<<< HEAD
         updateAt: usuario.updateAt 
           ? this.formatDate(usuario.updateAt.toString())
           : '', 
+=======
+        updatedAt: usuario.updatedAt
+          ? this.formatDate(usuario.updatedAt.toString())
+          : '',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       }))
       .sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
@@ -130,13 +166,22 @@ export class BaseUsuariosComponent implements OnInit {
       id: [this.usuario?._id || ''],
       nombre: [this.usuario?.nombre || '', [Validators.required]],
       direccion: [this.usuario?.direccion || '', [Validators.required]],
+<<<<<<< HEAD
       celular: [this.usuario?.celular || '', [Validators.required]],
+=======
+      telefono: [this.usuario?.telefono || '', [Validators.required]],
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       email: [
         this.usuario?.email || '',
         [Validators.required, Validators.email],
       ],
+<<<<<<< HEAD
       tipoDocumento: [this.usuario?.tipoDocumento || '', [Validators.required]],
       numeroDocumento: [this.usuario?.numeroDocumento || '', [Validators.required]],
+=======
+      tDocumento: [this.usuario?.tDocumento || '', [Validators.required]],
+      nDocumento: [this.usuario?.nDocumento || '', [Validators.required]],
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       login: [this.usuario?.login || '', [Validators.required]],
       rol: [this.usuario?.rol || '', [Validators.required]],
       estado: [
@@ -152,8 +197,13 @@ export class BaseUsuariosComponent implements OnInit {
       if (typeof formData.createdAt === 'string') {
         formData.createdAt = this.formatDate(formData.createdAt);
       }
+<<<<<<< HEAD
       if (typeof formData.updateAt === 'string') {
         formData.updateAt = this.formatDate(formData.updateAt);
+=======
+      if (typeof formData.updatedAt === 'string') {
+        formData.updatedAt = this.formatDate(formData.updatedAt);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       }
       const estadoBooleano = formData.estado === 'Activo';
       const usuarioActualizado = {
@@ -183,11 +233,15 @@ export class BaseUsuariosComponent implements OnInit {
                 this.cerrarModal();
             },
             error: (error) => {
+<<<<<<< HEAD
               Swal.fire({
                 title: "Error al eliminar el usuario",
                 text: error.error.msg,
                 icon: "error"
               });
+=======
+                console.error('Error al eliminar usuario:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
             },
         });
       }
@@ -207,11 +261,15 @@ export class BaseUsuariosComponent implements OnInit {
                 this.cerrarModal();
             },
             error: (error) => {
+<<<<<<< HEAD
               Swal.fire({
                 title: "Error al cambiar el rol",
                 text: error.error.msg,
                 icon: "error"
               });
+=======
+                console.error('Error al cambiar el rol del usuario:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
             },
         });
     }
@@ -226,11 +284,15 @@ export class BaseUsuariosComponent implements OnInit {
                 this.cerrarModal();
             },
             error: (error) => {
+<<<<<<< HEAD
               Swal.fire({
                 title: "Error al cambiar el estado",
                 text: error.error.msg,
                 icon: "error"
               });
+=======
+                console.error('Error al cambiar el estado de usuario:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
             },
         });
     }

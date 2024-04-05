@@ -1,6 +1,10 @@
 <section class="mx-auto table-custom-width my-4 xl:w-1/2">  
     <h1 class="font-bold text-4xl text-center text-sky-900 mb-4">Interacciones</h1>
+<<<<<<< HEAD
     <app-table *appPermisos="['GERENTE', 'SUPERVISOR', 'ASESOR']" [headers]="headNames" [datos]="interacciones" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+=======
+    <app-table [headers]="headNames" [datos]="interacciones" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 </section>
 
 <app-modal [isOpen]="modalAbierto === 'modal1'" (closeModalEvent)="cerrarModal()">
@@ -10,7 +14,11 @@
             @if (interaccion) {
             <form (submit)="guardarCambiosInt()" #oporEdit>
                 <label for="accion">Acción de interaccion:</label>
+<<<<<<< HEAD
                 <select name="accion" [(ngModel)]="interaccion.actionInteraction" required
+=======
+                <select name="accion" [(ngModel)]="interaccion.accion" required
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
                     <option value="llamada">Llamada telefónica</option>
                     <option value="correo">Envío de correo electrónico</option>
@@ -31,7 +39,11 @@
                     <option value="estrategia">Preparación de estrategia legal</option>
                 </select>              
                 <label for="descripcion" >Descripción:</label>
+<<<<<<< HEAD
                 <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="interaccion.descriptionInteraction" name="descripcion" required></textarea>
+=======
+                <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="interaccion.descripcion" name="descripcion" required></textarea>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
                 <div class="col-span-2 mb-4">
                     <button type="submit" class="bg-sky-900 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">'Guardar Cambios</button>
@@ -47,7 +59,11 @@
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
           <p>¿Está seguro de que desea eliminar esta interacción?</p>
+<<<<<<< HEAD
           <p class="text-lg text-orange-500">{{ interaccion?.actionInteraction }}</p>
+=======
+          <p class="text-lg text-orange-500">{{ interaccion?.accion }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4">
           <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2" (click)="eliminarInteraccion(interaccion)">Confirmar</button>

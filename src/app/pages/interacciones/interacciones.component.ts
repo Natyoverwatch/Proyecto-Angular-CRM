@@ -6,38 +6,61 @@ import { OportunidadService } from '../../services/oportunidad/oportunidad.servi
 import Swal from 'sweetalert2';
 import { ModalComponent } from "../../components/modal/modal.component";
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
     selector: 'app-interacciones',
     standalone: true,
     templateUrl: './interacciones.component.html',
     styleUrl: './interacciones.component.css',
+<<<<<<< HEAD
     imports: [TableComponent, ModalComponent, FormsModule, PermisosDirective]
+=======
+    imports: [TableComponent, ModalComponent, FormsModule]
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 })
 export class InteraccionesComponent {
   @ViewChild('oporEdit') form: ElementRef<HTMLFormElement>;
   interacciones: InteraccionModel[]=[];
   interaccion: InteraccionModel | null = null;
+<<<<<<< HEAD
   refOportunityOriginal: string = '';
+=======
+  refInteraccionOriginal: string = '';
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   modalAbierto: 'modal1' | 'modal2' | null = null;
 
   constructor(private getInter: OportunidadService){}
 
   headNames: string[] = [
+<<<<<<< HEAD
     'userGestor',
     'refOportunity',
     'descriptionInteraction',
     'actionInteraction',
+=======
+    'refInteraccion',
+    'descripcion',
+    'accion',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     'createdAt',
     'updatedAt',
   ];
 
   headMap: { [key: string]: string } = {
+<<<<<<< HEAD
     userGestor: 'Asesor encargado',
     refOportunity: 'Oportunidad relacionada',
     descriptionInteraction: 'Descripción',
     actionInteraction: 'Acción',
+=======
+    refInteraccion: 'Asesor encargado',
+    descripcion: 'Descripción',
+    accion: 'Accion',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     createdAt: 'F. Creacion',
     updatedAt: 'F. Modificado',
   };
@@ -73,7 +96,11 @@ export class InteraccionesComponent {
       next: (resp: any) => {
         if (resp.ok) {
           /* this.interacciones = resp.interacciones; */
+<<<<<<< HEAD
           this.interacciones = this.transformarInteracciones(resp.interaccion);
+=======
+          this.interacciones = this.transformarInteracciones(resp.interacciones);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         } else {
           console.error('Error al obtener las interacciones:', resp.msg);
           // mostrar un mensaje de error al usuario
@@ -88,6 +115,7 @@ export class InteraccionesComponent {
 
   transformarInteracciones(interacciones: any[]): any[] {
     return interacciones.map((interaccion) => {
+<<<<<<< HEAD
       this.refOportunityOriginal = interaccion.refOportunity;
       const transformedInteraccion = {
         ...interaccion,
@@ -98,6 +126,16 @@ export class InteraccionesComponent {
       };
       return transformedInteraccion;
     });
+=======
+      this.refInteraccionOriginal = interaccion.refInteraccion;
+      return{
+        ...interaccion,
+        refInteraccion:  interaccion.refInteraccion.usuarioGestor.nombre || '',
+        createdAt: interaccion.createdAt ? this.formatDate(interaccion.createdAt.toString()) : '',
+        updatedAt: interaccion.updatedAt ? this.formatDate(interaccion.updatedAt.toString()) : '',
+      }
+    }).sort((a, b) => a.refInteraccion.localeCompare(b.refInteraccion));
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   formatDate(dateString: string): string {
@@ -108,12 +146,22 @@ export class InteraccionesComponent {
   guardarCambiosInt() {
     if (this.interaccion && this.interaccion._id) {
         const cambios: any = {
+<<<<<<< HEAD
             refOportunity: this.refOportunityOriginal,
             descriptionInteraction: this.interaccion.descriptionInteraction,
             actionInteraction: this.interaccion.actionInteraction
         };
         this.getInter.editarInteraccion(cambios, this.interaccion._id).subscribe({
             next: (resp: any) => {
+=======
+            refInteraccion: this.refInteraccionOriginal,
+            descripcion: this.interaccion.descripcion,
+            accion: this.interaccion.accion,
+        };
+        this.getInter.editarInteraccion(cambios, this.interaccion._id).subscribe({
+            next: (resp: any) => {
+                this.obtenerInteracciones();
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 this.cerrarModal();
                 Swal.fire({
                     title: "Interaccion guardada exitosamente",
@@ -129,7 +177,11 @@ export class InteraccionesComponent {
                 });
             }
         });
+<<<<<<< HEAD
     } 
+=======
+    }    
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   eliminarInteraccion(interaccion: InteraccionModel | null): void {

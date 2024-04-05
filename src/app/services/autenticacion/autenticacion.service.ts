@@ -5,7 +5,10 @@ import { Observable, Subject, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { LoginInterfaces } from '../../core/interfaces/login-interfaces';
+<<<<<<< HEAD
 import Swal from 'sweetalert2';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 const base_url = environment.base_url;
 
@@ -50,10 +53,17 @@ export class AutenticacionService {
           _id,
           nombre,
           email,
+<<<<<<< HEAD
           celular,
           direccion,
           tipoDocumento,
           numeroDocumento,
+=======
+          telefono,
+          direccion,
+          tDocumento,
+          nDocumento,
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
           login,
           password,
           rol,
@@ -65,10 +75,17 @@ export class AutenticacionService {
         this.usuario = new UsuarioModel(
           nombre,
           email,
+<<<<<<< HEAD
           celular,
           direccion,
           tipoDocumento,
           numeroDocumento,
+=======
+          telefono,
+          direccion,
+          tDocumento,
+          nDocumento,
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
           login,
           password,
           rol,
@@ -78,10 +95,17 @@ export class AutenticacionService {
           _id,
         );
         this.usuario.direccion = '';
+<<<<<<< HEAD
         this.usuario.celular = 0;
         this.usuario.tipoDocumento = '';
         this.usuario.password = '';
         this.usuario.numeroDocumento = '';
+=======
+        this.usuario.telefono = '';
+        this.usuario.tDocumento = '';
+        this.usuario.password = '';
+        this.usuario.nDocumento = '';
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         localStorage.setItem('usuario', JSON.stringify(this.usuario));
         localStorage.setItem('token', resp.token);
         return true;
@@ -111,6 +135,7 @@ export class AutenticacionService {
     this.router.navigateByUrl('');
   }
 
+<<<<<<< HEAD
   private tokenExpired(): boolean {
     const token = localStorage.getItem('token');
     const tokenPayload = token ? JSON.parse(atob(token.split('.')[1])) : null;
@@ -139,6 +164,14 @@ export class AutenticacionService {
 
   cambiarContraseña(nuevaContraseña: string): Observable<any> {
     return this.httpClient.put(`${base_url}/auth/validate`, { password: nuevaContraseña }, this.headers);
+=======
+  recuperarContraseña(login: string, nDocumento: string): Observable<any> {
+    return this.httpClient.post(`${base_url}/auth/recuperar`, { login, nDocumento });
+  }
+
+  cambiarContraseña(nuevaContraseña: string): Observable<any> {
+    return this.httpClient.put(`${base_url}/auth/cambiar`, { password: nuevaContraseña }, this.headers);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
 }

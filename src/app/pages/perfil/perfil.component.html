@@ -1,15 +1,24 @@
 @if (usuario) {
+<<<<<<< HEAD
     <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-md p-8 mt-8">
+=======
+    <div class="max-w-fit mx-auto bg-white rounded-lg shadow-md p-8 my-12">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         <div class="bg-sky-900 p-2 rounded-full w-40 h-40 flex items-center justify-center mb-4">
             <img src="./assets/img/logo.png" alt="Logo" />
         </div>
         <h1 class="text-3xl font-bold mb-10 text-sky-900 self-center text-center">Perfil de {{ usuario.login }}</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sky-900">
+<<<<<<< HEAD
             <div class="md:border md:border-gray-300 md:rounded-lg md:p-4 md:mb-4 md:shadow-sm md:w-full">
+=======
+            <div class="md:border md:border-gray-300 md:rounded-lg md:p-4 md:mb-4 md:shadow-sm md:w-auto">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 <label class="text-lg mb-2 block"><span class="font-semibold">Email:</span>
                     <input [(ngModel)]="usuario.email" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
                 </label>
                 <label class="text-lg mb-2 block"><span class="font-semibold">Teléfono:</span>
+<<<<<<< HEAD
                     <input [(ngModel)]="usuario.celular" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
                 </label>
                 <label class="text-lg mb-2 block"><span class="font-semibold">Dirección:</span>
@@ -25,6 +34,23 @@
                 </label>
                 <label class="text-lg mb-2 block"><span class="font-semibold">Nombre y Apellido:</span>
                     <textarea [(ngModel)]="usuario.nombre" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full resize-none" [readonly]="!editMode" (change)="capturarCambios()"></textarea>
+=======
+                    <input [(ngModel)]="usuario.telefono" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
+                </label>
+                <label class="text-lg mb-2 block"><span class="font-semibold">Dirección:</span>
+                    <input [(ngModel)]="usuario.direccion" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
+                </label>
+            </div>
+            <div class="md:border md:border-gray-300 md:rounded-lg md:p-4 md:mb-4 md:shadow-sm md:w-auto">
+                <label class="text-lg mb-2 block"><span class="font-semibold">Tipo de documento:</span>
+                    <input [(ngModel)]="usuario.tDocumento" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
+                </label>
+                <label class="text-lg mb-2 block"><span class="font-semibold">Número de documento:</span>
+                    <input [(ngModel)]="usuario.nDocumento" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
+                </label>
+                <label class="text-lg mb-2 block"><span class="font-semibold">Nombre y Apellido:</span>
+                    <input [(ngModel)]="usuario.nombre" class="border-b-2 border-gray-300 outline-none focus:border-sky-500 block w-full" [readonly]="!editMode" (change)="capturarCambios()" />
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 </label>
             </div>
         </div>
@@ -37,6 +63,7 @@
                 Cancelar
             </button>
             }
+<<<<<<< HEAD
             <button class="mt-8 bg-sky-900 text-white py-2 px-4 rounded hover:bg-orange-500" (click)="abrirModal3()">Cambiar contraseña</button>
         </div>
 
@@ -103,3 +130,16 @@
         </form>          
     </div>    
 </app-modal>
+=======
+            <button class="mt-8 bg-sky-900 text-white py-2 px-4 rounded hover:bg-orange-500">Cambiar contraseña</button>
+        </div>
+    </div>
+    <div class="max-w-fit mx-auto text-sm text-gray-600 mt-4">
+        Si deseas darte de baja, puedes hacerlo haciendo clic en <a href="#" class="text-orange-500 hover:underline">este enlace</a>.
+    </div>
+    
+    <div class="max-w-fit mx-auto text-sm text-gray-600 mt-2">
+        Si prefieres eliminar por completo tu información de nuestro sistema, por favor, haz clic en <a href="#" class="text-orange-500 hover:underline">este enlace</a>.
+    </div>
+}    
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d

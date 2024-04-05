@@ -4,7 +4,10 @@ import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModu
 import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import Swal from 'sweetalert2';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
   selector: 'app-registro',
@@ -28,10 +31,17 @@ export class RegistroComponent implements OnInit{
     this.registroForm = this.fb.group({
       nombre: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
+<<<<<<< HEAD
       celular: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       tipoDocumento: ['', [Validators.required]],
       numeroDocumento: ['', [Validators.required]],
+=======
+      telefono: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      tDocumento: ['', [Validators.required]],
+      nDocumento: ['', [Validators.required]],
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       login: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirm_password: ['', [Validators.required, this.passValidar()]],
@@ -54,14 +64,22 @@ export class RegistroComponent implements OnInit{
       const usuario: UsuarioModel = {
         nombre: this.registroForm.value.nombre,
         direccion: this.registroForm.value.direccion,
+<<<<<<< HEAD
         celular: this.registroForm.value.celular,
         email: this.registroForm.value.email,
         tipoDocumento: this.registroForm.value.tipoDocumento,
         numeroDocumento: this.registroForm.value.numeroDocumento,
+=======
+        telefono: this.registroForm.value.telefono,
+        email: this.registroForm.value.email,
+        tDocumento: this.registroForm.value.tDocumento,
+        nDocumento: this.registroForm.value.nDocumento,
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         login: this.registroForm.value.login,
         password: this.registroForm.value.password,
       };
       this.userService.crearUsuario(usuario).subscribe({
+<<<<<<< HEAD
         next: () => {
           Swal.fire({
             title: "Usuario creado con exito",
@@ -83,6 +101,22 @@ export class RegistroComponent implements OnInit{
         title: "Por favor rellene los datos del formulario de manera adecuada",
         icon: "warning"
       });
+=======
+        next: (response: any) => {
+          console.log('Usuario creado correctamente', response);
+          this.registroForm.reset();
+          this.router.navigate(['']);
+          // si funciona y el form es valido
+        },
+        error: (error) => {
+          console.error('Error al crear usuario', error);
+          // sino funciona pero el form es valido
+        }
+      });
+    } else {
+      // Si el formulario no es válido
+      console.error('Formulario inválido');
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ModalComponent } from "../../components/modal/modal.component";
@@ -13,15 +14,30 @@ import { AutenticacionService } from '../../services/autenticacion/autenticacion
     templateUrl: './perfil.component.html',
     styleUrl: './perfil.component.css',
     imports: [CommonModule, FormsModule, ModalComponent, ReactiveFormsModule]
+=======
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-perfil',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.css',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 })
 export class PerfilComponent implements OnInit{
   usuario: UsuarioModel | null = null;
   editMode: boolean = false;
+<<<<<<< HEAD
   contrasenaForm: FormGroup = {} as FormGroup;
 
   modalAbierto: 'modal1' | 'modal2' | 'modal3' | null = null;
 
   constructor(private usuariosService: UsuariosService, private auth:AutenticacionService, private formBuilder: FormBuilder) {}
+=======
+
+  constructor(private usuariosService: UsuariosService) {}
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
   ngOnInit(): void {
     const usuarioString = localStorage.getItem('usuario');
@@ -37,6 +53,7 @@ export class PerfilComponent implements OnInit{
           }
         });
       }
+<<<<<<< HEAD
     }
 
     this.contrasenaForm = this.formBuilder.group({
@@ -81,6 +98,12 @@ export class PerfilComponent implements OnInit{
         icon: "error"
       });
     }
+=======
+    } 
+  }
+ 
+  cambiarContrasena(): void {
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   toggleEditMode() {
@@ -91,7 +114,11 @@ export class PerfilComponent implements OnInit{
     if (this.usuario) {
       this.usuario = { ...this.usuario };
     } else {
+<<<<<<< HEAD
       console.error('El usuario no existe. No se pueden capturar cambios.');
+=======
+      console.error('El usuario es nulo. No se pueden capturar cambios.');
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     }
   }
 
@@ -99,6 +126,7 @@ export class PerfilComponent implements OnInit{
     if (this.editMode) {
       if (this.usuario) {
         this.usuariosService.editarUsuario(this.usuario).subscribe({
+<<<<<<< HEAD
           next: () => {
             Swal.fire({
               title: "Cambios guardados con éxito",
@@ -112,6 +140,14 @@ export class PerfilComponent implements OnInit{
               text: error.error.msg,
               icon: "error"
             });
+=======
+          next: (resp) => {
+            console.log('Cambios guardados exitosamente:', resp);
+            this.toggleEditMode();
+          },
+          error: (error) => {
+            console.error('Error al guardar cambios:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
           }
         });
       }
@@ -119,6 +155,7 @@ export class PerfilComponent implements OnInit{
       this.toggleEditMode();
     }
   }
+<<<<<<< HEAD
 
   cambiarEstadoUsuario(usuario: UsuarioModel | null): void {
     if (usuario?._id) {
@@ -175,3 +212,6 @@ export class PerfilComponent implements OnInit{
   }
 
 }
+=======
+}
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d

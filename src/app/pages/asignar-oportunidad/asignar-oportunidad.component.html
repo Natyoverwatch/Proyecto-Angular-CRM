@@ -1,13 +1,21 @@
 <section class="mx-auto table-custom-width justify-between my-4">   
     <h1 class="font-bold text-4xl text-center text-sky-900">Asignar asesor</h1>
+<<<<<<< HEAD
     <app-table *appPermisos="['GERENTE', 'SUPERVISOR']" [headers]="headNames" [datos]="oportunidades" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+=======
+    <app-table [headers]="headNames" [datos]="oportunidades" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 </section>
 
 <app-modal [isOpen]="modalAbierto === 'modal1'" (closeModalEvent)="cerrarModal()">
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
             <p>Selecciona el gestor para:</p>
+<<<<<<< HEAD
             <p class="text-lg text-orange-500">{{ oportunidad?.descriptionOportunity }}</p>
+=======
+            <p class="text-lg text-orange-500">{{ oportunidad?.descripcion }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4 flex flex-col items-center">
             <select class="py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-indigo-500" [(ngModel)]="nuevoGestor">
@@ -27,7 +35,11 @@
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
           <p>¿Está seguro de que desea eliminar esta oportunidad?</p>
+<<<<<<< HEAD
           <p class="text-lg text-orange-500">{{ oportunidad?.nameOportunity }}</p>
+=======
+          <p class="text-lg text-orange-500">{{ oportunidad?.nomOportunidad }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4">
           <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2" (click)="eliminarOportunidad(oportunidad)">Confirmar</button>

@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <div *appPermisos="['GERENTE', 'SUPERVISOR', 'ASESOR']" class="grid grid-cols-1 mb-8">
     <div [class]="mostrarInteracciones ? 'col-span-1 overflow-y-auto h-3/5' : 'col-span-1 overflow-y-auto h-fit' ">
         <section class="mx-auto table-custom-width mt-4">
             <div class="flex justify-between items-center mb-4">
                 <h1 class="font-bold text-4xl text-center text-sky-900 flex-grow">Oportunidades</h1>
                 <button *appPermisos="['GERENTE', 'SUPERVISOR']" class="bg-sky-900 hover:bg-green-500 text-white font-bold py-2 px-4 rounded transition-colors duration-300" (click)="abrirModal5()">
+=======
+<div class="grid grid-cols-1">
+    <div [class]="mostrarInteracciones ? 'col-span-1 overflow-y-auto h-4/5' : 'col-span-1 overflow-y-auto h-fit' ">
+        <section class="mx-auto table-custom-width mt-4">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="font-bold text-4xl text-center text-sky-900 flex-grow">Oportunidades</h1>
+                <button class="bg-sky-900 hover:bg-green-500 text-white font-bold py-2 px-4 rounded transition-colors duration-300" (click)="abrirModal5()">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                     Agregar Nueva Oportunidad
                 </button>
             </div>
@@ -11,7 +20,11 @@
         </section> 
     </div>
     @if (mostrarInteracciones) {
+<<<<<<< HEAD
     <div class=" mx-auto w-1/2 col-span-1 overflow-y-auto -mt-80 mb-10">
+=======
+    <div class=" mx-auto w-1/2 col-span-1 overflow-y-auto h-fit -mt-24 mb-10">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         <section class="table-custom-width justify-between">   
             <h1 class="font-bold text-2xl text-center text-sky-900">Interacciones Relacionadas</h1>
             <app-table [headers]="headNamesInt" [datos]="interacciones" [columnasMapeo]="headMapInt" [acciones]="accionesInt" (accionSeleccionada)="ejecutarAccionInt($event)"></app-table>
@@ -25,7 +38,11 @@
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
           <p>¿Está seguro de que desea eliminar esta oportunidad?</p>
+<<<<<<< HEAD
           <p class="text-lg text-orange-500">{{ oportunidad?.nameOportunity }}</p>
+=======
+          <p class="text-lg text-orange-500">{{ oportunidad?.nomOportunidad }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4">
           <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2" (click)="eliminarOportunidad(oportunidad)">Confirmar</button>
@@ -38,7 +55,11 @@
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
             <p>Selecciona el nuevo estado para:</p>
+<<<<<<< HEAD
             <p class="text-lg text-orange-500">{{ oportunidad?.nameOportunity }}</p>
+=======
+            <p class="text-lg text-orange-500">{{ oportunidad?.nomOportunidad }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4 flex flex-col items-center">
             <select class="py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-indigo-500" [(ngModel)]="nuevoEstadoOpor">
@@ -62,8 +83,13 @@
             <h2 class="text-2xl font-bold mb-4">Editar oportunidad</h2>
             @if (oportunidad) {
             <form (submit)="guardarCambiosOpor()" #oporEdit>
+<<<<<<< HEAD
                 <label for="nameOportunity">Nombre de la oportunidad:</label>
                 <select name="nameOportunity" [(ngModel)]="oportunidad.nameOportunity" required
+=======
+                <label for="nomOportunidad">Nombre de la oportunidad:</label>
+                <select name="nomOportunidad" [(ngModel)]="oportunidad.nomOportunidad" required
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
                     <option value="" disabled selected>Elige un servicio</option>
                     <option value="Asesoría legal">Asesoría legal</option>
@@ -75,11 +101,19 @@
                     <option value="Otros">Otro tipo</option>
                 </select>
               
+<<<<<<< HEAD
                 <label for="descriptionOportunity" >Descripción:</label>
                 <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="oportunidad.descriptionOportunity" name="descriptionOportunity" required></textarea>
               
                 <label for="stateOportunity">Estado:</label>
                 <select id="stateOportunity" class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="oportunidad.stateOportunity" name="stateOportunity" required>
+=======
+                <label for="descripcion" >Descripción:</label>
+                <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="oportunidad.descripcion" name="descripcion" required></textarea>
+              
+                <label for="estado">Estado:</label>
+                <select id="estado" class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="oportunidad.estado" name="estado" required>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                     <option value="Sin gestor">Sin gestor</option>
                     <option value="En proceso">En proceso</option>
                     <option value="En pausa">En pausa</option>
@@ -102,10 +136,17 @@
             <h2 class="text-2xl font-bold mb-4">{{editar ? 'Editar interacción' : 'Crear interacción' }}</h2>
             <form (submit)="editar ? guardarCambiosInt() : crearInteraccion(interaccion)" #oporEdit>
                 <label for="accion">Acción de interaccion:</label>
+<<<<<<< HEAD
                 <select name="accion" [(ngModel)]="interaccion.actionInteraction" required
                 class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
                     <option value="llamada">Llamada telefónica</option>
                     <option value="correo">Envío documentación física</option>
+=======
+                <select name="accion" [(ngModel)]="interaccion.accion" required
+                class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4">
+                    <option value="llamada">Llamada telefónica</option>
+                    <option value="correo">Envío de correo electrónico</option>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                     <option value="reunion">Reunión presencial</option>
                     <option value="mensaje">Enviar correo electrónico</option>
                     <option value="factura">Generación de factura</option>
@@ -122,8 +163,13 @@
                     <option value="investigacion_precedentes">Investigación de precedentes legales</option>
                     <option value="estrategia">Preparación de estrategia legal</option>
                 </select>              
+<<<<<<< HEAD
                 <label for="descriptionInteraction" >Descripción:</label>
                 <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="interaccion.descriptionInteraction" name="descriptionOportunity" required></textarea>
+=======
+                <label for="descripcion" >Descripción:</label>
+                <textarea class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" [(ngModel)]="interaccion.descripcion" name="descripcion" required></textarea>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
                 <div class="col-span-2 mb-4">
                     <button type="submit" class="bg-sky-900 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">{{editar ? 'Guardar Cambios' : 'Crear' }}</button>
@@ -142,7 +188,11 @@
             <form (submit)="nuevaOpor()" #newOpor>
                 <div class="mb-4">
                     <label for="nombre" class="block text-sky-900 font-bold mb-2">Nombre del servicio:</label>
+<<<<<<< HEAD
                     <select id="nombre" name="nombre" [(ngModel)]="nuevaOportunidad.nameOportunity" required
+=======
+                    <select id="nombre" name="nombre" [(ngModel)]="nuevaOportunidad.nomOportunidad" required
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                         class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="" disabled selected>Elige un servicio</option>
                         <option value="Asesoría legal">Asesoría legal</option>
@@ -155,6 +205,7 @@
                     </select>
                 </div>
                 <div class="mb-6 h-52">
+<<<<<<< HEAD
                     <label for="descriptionOportunity" class="block text-sky-900 font-bold mb-2">Descripción:</label>
                     <textarea placeholder="Danos una corta introducción a tu necesidad..." id="descriptionOportunity" name="descriptionOportunity"
                         [(ngModel)]="nuevaOportunidad.descriptionOportunity" required
@@ -175,6 +226,17 @@
                     <label for="userGestor" class="block text-sky-900 font-bold mb-2">Cliente:</label>
                     <select for="userCliente" name="userCliente" [(ngModel)]="nuevaOportunidad.userCliente" required
                         class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+=======
+                    <label for="descripcion" class="block text-sky-900 font-bold mb-2">Descripción:</label>
+                    <textarea placeholder="Danos una corta introducción a tu necesidad..." id="descripcion" name="descripcion"
+                        [(ngModel)]="nuevaOportunidad.descripcion" required
+                        class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-3/4"></textarea>
+                </div>
+                <div class="text-sky-900 font-bold text-center mb-2">
+                    <select for="usuarioAsignado" name="usuarioAsignado" [(ngModel)]="nuevaOportunidad.usuarioAsignado" required
+                        class="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="" disabled selected>Elige un cliente</option>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                         @for (usuario of usuarios; track $index) {
                         <option [value]=usuario._id>{{usuario.login}}</option>
                         }
@@ -193,7 +255,11 @@
     <div class="flex flex-col items-center justify-center h-full">
         <div class="text-sky-900 font-bold text-center">
           <p>¿Está seguro de que desea eliminar esta interacción?</p>
+<<<<<<< HEAD
           <p class="text-lg text-orange-500">{{ interaccion.actionInteraction }}</p>
+=======
+          <p class="text-lg text-orange-500">{{ interaccion.accion }}</p>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         </div>
         <div class="mt-4">
           <button class="bg-orange-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2" (click)="eliminarInteraccion(interaccion)">Confirmar</button>

@@ -1,6 +1,10 @@
 <section class="mx-auto table-custom-width justify-between my-4">   
     <h1 class="font-bold text-4xl text-center text-sky-900">Todos los usuarios</h1>
+<<<<<<< HEAD
     <app-table *appPermisos="['GERENTE', 'SUPERVISOR']" [headers]="headNames" [datos]="usuarios" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+=======
+    <app-table [headers]="headNames" [datos]="usuarios" [columnasMapeo]="headMap" [acciones]="acciones" (accionSeleccionada)="ejecutarAccion($event)"></app-table>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 </section>
 
 <app-modal [isOpen]="modalAbierto === 'modal1'" (closeModalEvent)="cerrarModal()">
@@ -17,24 +21,39 @@
                     <input type="email" id="email" formControlName="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
                 </div>
                 <div class="mb-4">
+<<<<<<< HEAD
                     <label for="celular" class="block font-semibold mb-1">Teléfono:</label>
                     <input type="text" id="celular" formControlName="celular" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+=======
+                    <label for="telefono" class="block font-semibold mb-1">Teléfono:</label>
+                    <input type="text" id="telefono" formControlName="telefono" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 </div>
                 <div class="mb-4">
                     <label for="direccion" class="block font-semibold mb-1">Dirección:</label>
                     <input type="text" id="direccion" formControlName="direccion" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
                 </div>
                 <div class="mb-4">
+<<<<<<< HEAD
                     <label for="tipoDocumento" class="block font-semibold mb-1">Tipo de Documento:</label>
                     <select id="tipoDocumento" formControlName="tipoDocumento" class="appearance-none border rounded py-2 px-2 leading-tight" required>
+=======
+                    <label for="tDocumento" class="block font-semibold mb-1">Tipo de Documento:</label>
+                    <select id="tDocumento" formControlName="tDocumento" class="appearance-none border rounded py-2 px-2 leading-tight" required>
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                         <option value="Cédula ciudadanía">Cédula ciudadanía</option>
                         <option value="Cédula extranjería">Cédula extranjería</option>
                         <option value="Pasaporte">Pasaporte</option>
                     </select>
                 </div>
                 <div class="mb-4">
+<<<<<<< HEAD
                     <label for="numeroDocumento" class="block font-semibold mb-1">Número de Documento:</label>
                     <input type="text" id="numeroDocumento" formControlName="numeroDocumento" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+=======
+                    <label for="nDocumento" class="block font-semibold mb-1">Número de Documento:</label>
+                    <input type="text" id="nDocumento" formControlName="nDocumento" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
                 </div>
                 <div class="mb-4">
                     <label for="login" class="block font-semibold mb-1">Login:</label>

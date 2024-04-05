@@ -8,7 +8,10 @@ import {
 import { AutenticacionService } from '../../services/autenticacion/autenticacion.service';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import Swal from 'sweetalert2';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
   selector: 'app-recuperar',
@@ -40,16 +43,27 @@ export class RecuperarComponent implements OnInit, OnDestroy {
 
   recuperacionForm() {
     this.formularioRecuperacion = this.formBuilder.group({
+<<<<<<< HEAD
       email: ['', Validators.required],
       numeroDocumento: ['', Validators.required],
+=======
+      login: ['', Validators.required],
+      nDocumento: ['', Validators.required],
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     });
   }
 
   onSubmit() {
     if (this.formularioRecuperacion.valid) {
+<<<<<<< HEAD
       const { email, numeroDocumento } = this.formularioRecuperacion.value;
       this.autenticacionService
         .recuperarContraseña(email, numeroDocumento)
+=======
+      const { login, nDocumento } = this.formularioRecuperacion.value;
+      this.autenticacionService
+        .recuperarContraseña(login, nDocumento)
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         .subscribe({
           next: (resp: any) => {
             if (resp.token) {
@@ -65,6 +79,7 @@ export class RecuperarComponent implements OnInit, OnDestroy {
             }
           },
           error: (error: any) => {
+<<<<<<< HEAD
             Swal.fire({
               title: "Error en la solicitud",
               text: error.error.msg,
@@ -77,6 +92,20 @@ export class RecuperarComponent implements OnInit, OnDestroy {
         title: "formulario invalido, por favor rellene bien los campos",
         icon: "warning"
       });
+=======
+            console.error(
+              'Error en la solicitud de recuperación de contraseña:',
+              error
+            );
+            // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+          },
+        });
+    } else {
+      console.error(
+        'Formulario no válido. Por favor, complete todos los campos.'
+      );
+      // Si el formulario no es válido, puedes mostrar mensajes de error o realizar otras acciones
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     }
   }
 
@@ -113,16 +142,22 @@ export class RecuperarComponent implements OnInit, OnDestroy {
       )?.value;
       if (nuevaContrasena === confirmarContrasena) {
         this.autenticacionService.cambiarContraseña(nuevaContrasena).subscribe({
+<<<<<<< HEAD
           next: () => {
             Swal.fire({
               title: "Nueva contraseña establecida",
               icon: "success"
             });
+=======
+          next: (response: any) => {
+            console.log('Respuesta del servidor:', response);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
             this.onModalClose();
             this.router.navigate(['']);
             localStorage.removeItem('x-token-pass');
           },
           error: (error: any) => {
+<<<<<<< HEAD
             Swal.fire({
               title: "No se pudo ingresar la nueva contraseña",
               text: error.error.msg,
@@ -141,6 +176,23 @@ export class RecuperarComponent implements OnInit, OnDestroy {
         title: "completa el formulario adecuadamente",
         icon: "error"
       });
+=======
+            console.error(
+              'Error en la solicitud de cambio de contraseña:',
+              error
+            );
+          },
+        });
+      } else {
+        console.error(
+          'Las contraseñas no coinciden. Por favor, inténtalo de nuevo.'
+        );
+      }
+    } else {
+      console.error(
+        'Formulario no válido. Por favor, complete todos los campos correctamente.'
+      );
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     }
   }
 

@@ -33,17 +33,29 @@ export class UsuariosService {
   }
 
   getUsuariosPorRol(rol: string) {
+<<<<<<< HEAD
     return this.httpClient.get(`${base_url}/usuarioM/${rol}`, this.headers);
   }
+=======
+    let url = `${base_url}/usuarioM/${rol}`;
+    if (rol === 'staff' || rol === 'equipo') {
+        url = `${base_url}/usuarioM/Staff`;
+    }
+    return this.httpClient.get(url, this.headers);
+}
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
   editarUsuario(usuario: UsuarioModel) {
     return this.httpClient.put(`${base_url}/usuarioM/${usuario._id}`, usuario, this.headers);
   }
 
+<<<<<<< HEAD
   cambiarPass(usuarioid: string, password: string) {
     return this.httpClient.put(`${base_url}/usuarioM/${usuarioid}`, { password }, this.headers);
   }
 
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   obtenerUsuario(id: string) {
     return this.httpClient.get(`${base_url}/usuarioM/usuario/${id}`, this.headers);
   }

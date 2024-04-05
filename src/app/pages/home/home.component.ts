@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactoService } from '../../services/contacto/contacto.service';
 import Swal from 'sweetalert2';
+=======
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
   selector: 'app-home',
   standalone: true,
+<<<<<<< HEAD
   imports: [RouterLink, PermisosDirective, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -66,4 +73,12 @@ export class HomeComponent implements OnInit {
     }
   }  
 
+=======
+  imports: [RouterLink, PermisosDirective],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
+})
+export class HomeComponent {
+  
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 }

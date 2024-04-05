@@ -4,12 +4,19 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import Highcharts from 'highcharts/es-modules/masters/highcharts.src';
 import { OportunidadModel } from '../../core/models/oportunidad.model';
 import { OportunidadService } from '../../services/oportunidad/oportunidad.service';
+<<<<<<< HEAD
 import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
   selector: 'app-charts',
   standalone: true,
+<<<<<<< HEAD
   imports: [HighchartsChartModule, CommonModule, PermisosDirective],
+=======
+  imports: [HighchartsChartModule, CommonModule],
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.css'
 })
@@ -31,7 +38,11 @@ export class ChartsComponent implements OnInit {
     this.oS.getOportunidad().subscribe({
       next: (resp: any) => {
         if (resp.ok) {
+<<<<<<< HEAD
           this.oportunidades = resp.oportunidad;
+=======
+          this.oportunidades = resp.oportunidades;
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
           
           this.calcularPorcentajes();
           this.calcularDistribucionPorNombreYEstado();
@@ -52,6 +63,7 @@ export class ChartsComponent implements OnInit {
     const distribucion: { [key: string]: { [key: string]: number } } = {};
   
     this.oportunidades.forEach((oportunidad) => {
+<<<<<<< HEAD
       if (!distribucion[oportunidad.nameOportunity]) {
         distribucion[oportunidad.nameOportunity] = {};
       }
@@ -61,6 +73,17 @@ export class ChartsComponent implements OnInit {
       }
   
       distribucion[oportunidad.nameOportunity][oportunidad.stateOportunity]++;
+=======
+      if (!distribucion[oportunidad.nomOportunidad]) {
+        distribucion[oportunidad.nomOportunidad] = {};
+      }
+  
+      if (!distribucion[oportunidad.nomOportunidad][oportunidad.estado]) {
+        distribucion[oportunidad.nomOportunidad][oportunidad.estado] = 0;
+      }
+  
+      distribucion[oportunidad.nomOportunidad][oportunidad.estado]++;
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     });
     this.crearBarChart(distribucion);
   }
@@ -69,13 +92,21 @@ export class ChartsComponent implements OnInit {
     const totalOportunidades = this.oportunidades.length;
   
     const oportunidadesPorEstado: { [key: string]: number } = this.oportunidades.reduce((acumulador: { [key: string]: number }, oportunidad: OportunidadModel) => {
+<<<<<<< HEAD
       acumulador[oportunidad.stateOportunity] = (acumulador[oportunidad.stateOportunity] || 0) + 1;
+=======
+      acumulador[oportunidad.estado] = (acumulador[oportunidad.estado] || 0) + 1;
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       return acumulador;
     }, {});
   
     const porcentajesPorEstado: { [key: string]: number } = {};
     for (const estado in oportunidadesPorEstado) {
       const porcentaje = (oportunidadesPorEstado[estado] / totalOportunidades) * 100;
+<<<<<<< HEAD
+=======
+      // Limitar el número de decimales a 2
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       porcentajesPorEstado[estado] = parseFloat(porcentaje.toFixed(2));
     }
     this.crearPieChart(porcentajesPorEstado);
@@ -149,11 +180,19 @@ export class ChartsComponent implements OnInit {
     // Iteramos sobre las oportunidades para agruparlas por nombre y fecha de creación
     data.forEach((oportunidad: any) => {
       const fechaCreacion = new Date(oportunidad.createdAt).getTime();
+<<<<<<< HEAD
       if (!chartData[oportunidad.nameOportunity]) {
         chartData[oportunidad.nameOportunity] = [];
       }
       // Incrementamos el contador de oportunidades para cada nombre
       chartData[oportunidad.nameOportunity].push([fechaCreacion, 1]);
+=======
+      if (!chartData[oportunidad.nomOportunidad]) {
+        chartData[oportunidad.nomOportunidad] = [];
+      }
+      // Incrementamos el contador de oportunidades para cada nombre
+      chartData[oportunidad.nomOportunidad].push([fechaCreacion, 1]);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     });
   
     // Convertimos el objeto chartData a un array de series para Highcharts

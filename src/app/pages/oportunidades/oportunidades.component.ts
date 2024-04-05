@@ -9,14 +9,21 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { UsuariosService } from '../../services/usuarios/usuario.service';
+<<<<<<< HEAD
 import { PermisosDirective } from '../../core/directives/permisos/permisos.directive';
+=======
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 
 @Component({
     selector: 'app-oportunidades',
     standalone: true,
     templateUrl: './oportunidades.component.html',
     styleUrl: './oportunidades.component.css',
+<<<<<<< HEAD
     imports: [TableComponent, ModalComponent, FormsModule, PermisosDirective]
+=======
+    imports: [TableComponent, ModalComponent, FormsModule]
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
 })
 export class OportunidadesComponent implements OnInit {
   @ViewChild('newOpor') opor: ElementRef<HTMLFormElement>;
@@ -24,11 +31,19 @@ export class OportunidadesComponent implements OnInit {
   usuarios: UsuarioModel[] = [];
   oportunidades: OportunidadModel[]=[];
   oportunidad: OportunidadModel | null = null;
+<<<<<<< HEAD
   nuevaOportunidad:  OportunidadModel = new OportunidadModel('', '', 'Sin gestor', '', null, '');
   interacciones: InteraccionModel[]=[];
   interaccion: InteraccionModel = { refOportunity: '', descriptionInteraction: '', actionInteraction: ''};
   nuevoEstadoOpor: string= "";
   refOportunityOriginal: string = '';
+=======
+  nuevaOportunidad:  OportunidadModel = new OportunidadModel('', '', 'Sin gestor', '', null, '', []);
+  interacciones: InteraccionModel[]=[];
+  interaccion: InteraccionModel;
+  nuevoEstadoOpor: string= "";
+  refInteraccionOriginal: string = '';
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   mostrarInteracciones: boolean = false;
   editar: boolean = false;
   modalAbierto: 'modal1' | 'modal2' | 'modal3' | 'modal4' | 'modal5' | 'modal6' | null = null;
@@ -36,23 +51,43 @@ export class OportunidadesComponent implements OnInit {
   constructor(private getOpor: OportunidadService, private userServ: UsuariosService){}
 
   headNames: string[] = [
+<<<<<<< HEAD
     'nameOportunity',
     'descriptionOportunity',
     'stateOportunity',
     'userCreate',
     'userGestor',
     'userCliente',
+=======
+    'nomOportunidad',
+    'descripcion',
+    'estado',
+    'usuarioCreador',
+    'usuarioGestor',
+    'usuarioAsignado',
+    'interacciones',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     'createdAt',
     'updatedAt',
   ];
 
   headMap: { [key: string]: string } = {
+<<<<<<< HEAD
     nameOportunity: 'Nombre',
     descriptionOportunity: 'Descripción',
     stateOportunity: 'Estado',
     userCreate: 'Creado por',
     userGestor: 'Asesor encargado',
     userCliente: 'Cliente',
+=======
+    nomOportunidad: 'Nombre',
+    descripcion: 'Descripción',
+    estado: 'Estado',
+    usuarioCreador: 'Creado por',
+    usuarioGestor: 'Asesor encargado',
+    usuarioAsignado: 'Cliente',
+    interacciones: 'Numero Interacciones',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     createdAt: 'F. Creacion',
     updatedAt: 'F. Modificado',
   };
@@ -80,7 +115,11 @@ export class OportunidadesComponent implements OnInit {
       case 'consInteraccion':
         this.oportunidad = fila;
         if (this.oportunidad?._id) {
+<<<<<<< HEAD
         this.obtenerInteraccionesDeOportunidadSeleccionada(this.oportunidad._id);
+=======
+          this.obtenerInteraccionesDeOportunidadSeleccionada(this.oportunidad._id);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         }
         break;
       case 'eliminar':
@@ -99,6 +138,10 @@ export class OportunidadesComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuarios();
     this.obtenerOportunidades();
+<<<<<<< HEAD
+=======
+    this.interaccion = this.interaccion = new InteraccionModel('', '', '');;
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   obtenerUsuarios(): void {
@@ -111,7 +154,11 @@ export class OportunidadesComponent implements OnInit {
     this.getOpor.getOportunidad().subscribe({
       next: (resp: any) => {
         if (resp.ok) {
+<<<<<<< HEAD
           this.oportunidades = this.transformarOportunidades(resp.oportunidad);
+=======
+          this.oportunidades = this.transformarOportunidades(resp.oportunidades);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         } else {
           console.error('Error al obtener las oportunidades:', resp.msg);
           // mostrar un mensaje de error al usuario
@@ -127,12 +174,22 @@ export class OportunidadesComponent implements OnInit {
   transformarOportunidades(oportunidades: any[]): any[] {
     return oportunidades.map((oportunidad) => ({
       ...oportunidad,
+<<<<<<< HEAD
       userCreate: oportunidad.userCreate.nombre || '',
       userGestor: oportunidad.userGestor ? (oportunidad.userGestor.nombre || '') : 'Sin gestor',
       userCliente: oportunidad.userCliente.nombre || '',
       createdAt: oportunidad.createdAt ? this.formatDate(oportunidad.createdAt.toString()) : '',
       updatedAt: oportunidad.updateAt ? this.formatDate(oportunidad.updateAt.toString()) : '',
     })).sort((a, b) => a.nameOportunity.localeCompare(b.nameOportunity));
+=======
+      usuarioCreador: oportunidad.usuarioCreador.nombre || '',
+      usuarioGestor: oportunidad.usuarioGestor ? (oportunidad.usuarioGestor.nombre || '') : 'Sin gestor',
+      usuarioAsignado: oportunidad.usuarioAsignado.nombre || '',
+      interacciones: oportunidad.interacciones.length,
+      createdAt: oportunidad.createdAt ? this.formatDate(oportunidad.createdAt.toString()) : '',
+      updatedAt: oportunidad.updatedAt ? this.formatDate(oportunidad.updatedAt.toString()) : '',
+    })).sort((a, b) => a.nomOportunidad.localeCompare(b.nomOportunidad));
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   eliminarOportunidad(oportunidad: OportunidadModel | null): void {
@@ -149,9 +206,15 @@ export class OportunidadesComponent implements OnInit {
       }
   }
 
+<<<<<<< HEAD
   cambiarEstadoOpor(oportunidad: OportunidadModel | null, stateOportunity: string){
     if(oportunidad && oportunidad._id){
       this.getOpor.editarEstadoOpor(oportunidad?._id, stateOportunity).subscribe({
+=======
+  cambiarEstadoOpor(oportunidad: OportunidadModel | null, estado: string){
+    if(oportunidad && oportunidad._id){
+      this.getOpor.editarEstadoOpor(oportunidad?._id, estado).subscribe({
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         next: () => {
           this.obtenerOportunidades();
           this.cerrarModal();
@@ -171,19 +234,31 @@ export class OportunidadesComponent implements OnInit {
 
 
   headNamesInt: string[] = [
+<<<<<<< HEAD
     'userGestor',
     'refOportunity',
     'descriptionInteraction',
     'actionInteraction',
+=======
+    'refInteraccion',
+    'accion',
+    'descripcion',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     'createdAt',
     'updatedAt',
   ];
 
   headMapInt: { [key: string]: string } = {
+<<<<<<< HEAD
     userGestor: 'Asesor encargado',
     refOportunity: 'Oportunidad relacionada',
     descriptionInteraction: 'Descripción',
     actionInteraction: 'Acción',
+=======
+    refInteraccion: 'Asesor encargado',
+    accion: 'Accion',
+    descripcion: 'Descripción',
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     createdAt: 'F. Creacion',
     updatedAt: 'F. Modificado',
   };
@@ -212,11 +287,26 @@ export class OportunidadesComponent implements OnInit {
   }
 
   obtenerInteraccionesDeOportunidadSeleccionada(oportunidadId: string) {
+<<<<<<< HEAD
     this.getOpor.getInteraccionOpor(oportunidadId).subscribe({
       next: (resp: any) => {
         if (resp.ok) {
             this.interacciones = this.transformarInteracciones(resp.interactions);
             this.mostrarInteracciones = true;
+=======
+    this.getOpor.getOportunidad().subscribe({
+      next: (resp: any) => {
+        if (resp.ok) {
+          // Buscar la oportunidad seleccionada por su ID
+          const oportunidadSeleccionada = resp.oportunidades.find((oportunidad: any) => oportunidad._id === oportunidadId);
+          if (oportunidadSeleccionada) {
+            // Asignar las interacciones de la oportunidad seleccionada a this.interacciones
+            this.interacciones = this.transformarInteracciones(oportunidadSeleccionada.interacciones);
+            this.mostrarInteracciones=true;
+          } else {
+            console.error('Oportunidad seleccionada no encontrada');
+          }
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         } else {
           console.error('Error al obtener las interacciones:', resp.msg);
           // mostrar un mensaje de error al usuario
@@ -231,6 +321,7 @@ export class OportunidadesComponent implements OnInit {
 
   transformarInteracciones(interacciones: any[]): any[] {
     return interacciones.map((interaccion) => {
+<<<<<<< HEAD
       this.refOportunityOriginal = interaccion.refOportunity;
       const transformedInteraccion = {
         ...interaccion,
@@ -240,15 +331,30 @@ export class OportunidadesComponent implements OnInit {
         updatedAt: interaccion.updateAt ? this.formatDate(interaccion.updateAt.toString()) : '',
       };
       return transformedInteraccion;
+=======
+        this.refInteraccionOriginal = interaccion.refInteraccion;
+        return {
+            ...interaccion,
+            refInteraccion: this.oportunidad?.usuarioGestor || '',
+            createdAt: interaccion.createdAt ? this.formatDate(interaccion.createdAt.toString()) : '',
+            updatedAt: interaccion.updatedAt ? this.formatDate(interaccion.updatedAt.toString()) : '',
+        };
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     });
   }
 
   guardarCambiosOpor(): void {
     if (this.oportunidad && this.oportunidad._id) {
       const cambios: any = {
+<<<<<<< HEAD
         nameOportunity: this.oportunidad.nameOportunity,
         descriptionOportunity: this.oportunidad.descriptionOportunity,
         stateOportunity: this.oportunidad.stateOportunity
+=======
+        nomOportunidad: this.oportunidad.nomOportunidad,
+        descripcion: this.oportunidad.descripcion,
+        estado: this.oportunidad.estado
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
       };  
       this.getOpor.editarOportunidad(cambios, this.oportunidad._id).subscribe({
         next: (resp: any) => {
@@ -262,11 +368,15 @@ export class OportunidadesComponent implements OnInit {
           });
         },
         error: (error) => {
+<<<<<<< HEAD
           Swal.fire({
             title: "No se pudo guardar los cambios",
             text: error.error.msg,
             icon: "error"
           });
+=======
+          console.error('Error al guardar cambios:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         }
       });
     }
@@ -277,9 +387,15 @@ export class OportunidadesComponent implements OnInit {
         const idOportunidad: string = this.oportunidad._id;
         // Completar los datos del formulario con el ID de la oportunidad
         const datosFormulario: InteraccionModel = {
+<<<<<<< HEAD
             refOportunity: idOportunidad,
             actionInteraction: interaccion.actionInteraction,
             descriptionInteraction: interaccion.descriptionInteraction
+=======
+            refInteraccion: idOportunidad,
+            accion: interaccion.accion,
+            descripcion: interaccion.descripcion
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         };
 
         // Llamar al servicio para crear la interacción con los datos completos del formulario
@@ -295,11 +411,15 @@ export class OportunidadesComponent implements OnInit {
                 });
             },
             error: (error) => {
+<<<<<<< HEAD
               Swal.fire({
                 title: "No se pudo crear la interacción",
                 text: error.error.msg,
                 icon: "error"
             });
+=======
+                console.error('Error al guardar cambios:', error);
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
             }
         });
     } else {
@@ -351,9 +471,15 @@ export class OportunidadesComponent implements OnInit {
   guardarCambiosInt() {
     if (this.interaccion && this.interaccion._id) {
         const cambios: any = {
+<<<<<<< HEAD
             refOportunity: this.refOportunityOriginal,
             descriptionInteraction: this.interaccion.descriptionInteraction,
             actionInteraction: this.interaccion.actionInteraction
+=======
+            refInteraccion: this.refInteraccionOriginal,
+            descripcion: this.interaccion.descripcion,
+            accion: this.interaccion.accion
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
         };
         this.getOpor.editarInteraccion(cambios, this.interaccion._id).subscribe({
             next: (resp: any) => {
@@ -375,7 +501,11 @@ export class OportunidadesComponent implements OnInit {
                 });
             }
         });
+<<<<<<< HEAD
     } 
+=======
+    }    
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
   }
 
   eliminarInteraccion(interaccion: InteraccionModel | null): void {

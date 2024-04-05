@@ -34,9 +34,13 @@ export class HeaderComponent implements OnInit {
   }
   
   constructor(private auth: AutenticacionService) {}
+<<<<<<< HEAD
 
   ngOnInit(): void {
     this.auth.logoutExpiredSession();
+=======
+  ngOnInit(): void {
+>>>>>>> db0bf76b35262a94f152f82a251a33d5b088837d
     this.cargarUsuario();
 
     this.auth.onLogin.pipe(
