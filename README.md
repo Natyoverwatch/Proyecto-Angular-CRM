@@ -1,24 +1,24 @@
 # Indice
 
-1. [Descripción del proyecto](<#Pagina-Web-de-Gestión-de-Relaciones-con-el-Cliente-(CRM)-de-Abogados>)
+1. [Pagina Web de Gestión de Relaciones con el Cliente (CRM) de Abogados](#Pagina-Web-de-Gestión-de-Relaciones-con-el-Cliente-(CRM)-de-Abogados)
 
 2. [Instalación](#Instalación)
 
-3. [Configuración](#)
+3. [Configuración](#Configuración)
 
-4. [Estructura del proyecto](#)
+4. [Estructura del proyecto](#Estructura-del-proyecto)
 
-5. [Tecnologías, bibliotecas y frameworks utilizados en el proyecto](#)
+5. [Tecnologías, bibliotecas y frameworks utilizados en el proyecto](#Tecnologías-utilizadas)
 
-6. [API y endpoints] (#)
+6. [API y endpoints](#API-y-endpoints)
 
-7. [Diccionario de datos](#)
+7. [Diccionario de datos](#Diccionario-de-datos)
 
-8. [Construcción y despliegue](#)
+8. [Construcción y despliegue](#Construcción-y-despliegue)
 
-9. [Uso de la página](#)
+9. [Uso](#Uso)
 
-10. [Contacto](#)
+10. [Contacto](#Contacto)
 
 # Pagina Web de Gestión de Relaciones con el Cliente (CRM) de Abogados:
 
