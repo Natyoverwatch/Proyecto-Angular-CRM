@@ -20,3 +20,11 @@
   body {
     font-family: 'Poppins', sans-serif;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .table-custom-width {
+    width: 90%;
+  }
