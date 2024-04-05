@@ -14,9 +14,14 @@ import { Subject, takeUntil } from 'rxjs';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  imports: [RouterLink, ModalComponent, LoginComponent, PermisosDirective, CommonModule],
+  imports: [
+    RouterLink,
+    ModalComponent,
+    LoginComponent,
+    PermisosDirective,
+    CommonModule,
+  ],
 })
-
 export class HeaderComponent implements OnInit {
   mostrarMenu: boolean[] = [false, false, false];
   usuario: UsuarioModel | null = null;
@@ -32,22 +37,18 @@ export class HeaderComponent implements OnInit {
       this.usuario = JSON.parse(userData);
     }
   }
-  
+
   constructor(private auth: AutenticacionService) {}
 
   ngOnInit(): void {
     this.auth.logoutExpiredSession();
     this.cargarUsuario();
 
-    this.auth.onLogin.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
+    this.auth.onLogin.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.cargarUsuario();
     });
 
-    this.auth.onLogout.pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
+    this.auth.onLogout.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.usuario = null;
     });
   }
@@ -90,7 +91,7 @@ export class HeaderComponent implements OnInit {
     this.isModalOpen = false;
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     this.auth.logout();
     this.toggleButtonPerson();
   }

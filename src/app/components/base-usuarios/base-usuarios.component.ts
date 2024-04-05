@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [],
   templateUrl: './base-usuarios.component.html',
-  styleUrl: './base-usuarios.component.css'
+  styleUrl: './base-usuarios.component.css',
 })
 export class BaseUsuariosComponent implements OnInit {
   usuarios: UsuarioModel[] = [];
@@ -70,16 +70,16 @@ export class BaseUsuariosComponent implements OnInit {
     updateAt: 'F. Modificado',
   };
 
-  acciones: { nombre: string, evento: string }[] = [
+  acciones: { nombre: string; evento: string }[] = [
     { nombre: 'Editar', evento: 'editar' },
     { nombre: 'Cambiar Rol', evento: 'cRol' },
     { nombre: 'Cambiar Estado', evento: 'cEstado' },
-    { nombre: 'Eliminar', evento: 'eliminar' }
+    { nombre: 'Eliminar', evento: 'eliminar' },
   ];
 
   ejecutarAccion(evento: any) {
     const accion = evento.accion;
-    const fila = evento.fila;  
+    const fila = evento.fila;
     switch (accion) {
       case 'editar':
         this.usuario = fila;
@@ -101,21 +101,21 @@ export class BaseUsuariosComponent implements OnInit {
       default:
         break;
     }
-  }  
-
-  obtenerUsuarios(): void {
   }
 
+  obtenerUsuarios(): void {}
+
   transformarUsuarios(usuarios: UsuarioModel[]): any[] {
-    return usuarios.map((usuario) => ({
+    return usuarios
+      .map((usuario) => ({
         ...usuario,
         estado: usuario.estado ? 'Activo' : 'Inactivo',
         createdAt: usuario.createdAt
           ? this.formatDate(usuario.createdAt.toString())
           : '',
-        updateAt: usuario.updateAt 
+        updateAt: usuario.updateAt
           ? this.formatDate(usuario.updateAt.toString())
-          : '', 
+          : '',
       }))
       .sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
@@ -136,7 +136,10 @@ export class BaseUsuariosComponent implements OnInit {
         [Validators.required, Validators.email],
       ],
       tipoDocumento: [this.usuario?.tipoDocumento || '', [Validators.required]],
-      numeroDocumento: [this.usuario?.numeroDocumento || '', [Validators.required]],
+      numeroDocumento: [
+        this.usuario?.numeroDocumento || '',
+        [Validators.required],
+      ],
       login: [this.usuario?.login || '', [Validators.required]],
       rol: [this.usuario?.rol || '', [Validators.required]],
       estado: [
@@ -177,22 +180,21 @@ export class BaseUsuariosComponent implements OnInit {
 
   eliminarUsuarioConfirmado(usuario: UsuarioModel | null): void {
     if (usuario?._id) {
-        this.userServ.eliminarUsuario(usuario._id).subscribe({
-            next: () => {
-                this.obtenerUsuarios();
-                this.cerrarModal();
-            },
-            error: (error) => {
-              Swal.fire({
-                title: "Error al eliminar el usuario",
-                text: error.error.msg,
-                icon: "error"
-              });
-            },
-        });
-      }
+      this.userServ.eliminarUsuario(usuario._id).subscribe({
+        next: () => {
+          this.obtenerUsuarios();
+          this.cerrarModal();
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error al eliminar el usuario',
+            text: error.error.msg,
+            icon: 'error',
+          });
+        },
+      });
+    }
   }
-
 
   onCancel(): void {
     this.cerrarModal();
@@ -201,39 +203,37 @@ export class BaseUsuariosComponent implements OnInit {
 
   cambiarRolUsuario(usuario: UsuarioModel | null, nuevoRol: string) {
     if (usuario && usuario._id) {
-        this.userServ.cambiarRol(usuario._id, nuevoRol).subscribe({
-            next: () => {
-                this.obtenerUsuarios();
-                this.cerrarModal();
-            },
-            error: (error) => {
-              Swal.fire({
-                title: "Error al cambiar el rol",
-                text: error.error.msg,
-                icon: "error"
-              });
-            },
-        });
+      this.userServ.cambiarRol(usuario._id, nuevoRol).subscribe({
+        next: () => {
+          this.obtenerUsuarios();
+          this.cerrarModal();
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error al cambiar el rol',
+            text: error.error.msg,
+            icon: 'error',
+          });
+        },
+      });
     }
   }
-
 
   cambiarEstadoUsuario(usuario: UsuarioModel | null): void {
     if (usuario?._id) {
-        this.userServ.cambiarEstado(usuario._id).subscribe({
-            next: () => {
-                this.obtenerUsuarios();
-                this.cerrarModal();
-            },
-            error: (error) => {
-              Swal.fire({
-                title: "Error al cambiar el estado",
-                text: error.error.msg,
-                icon: "error"
-              });
-            },
-        });
+      this.userServ.cambiarEstado(usuario._id).subscribe({
+        next: () => {
+          this.obtenerUsuarios();
+          this.cerrarModal();
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error al cambiar el estado',
+            text: error.error.msg,
+            icon: 'error',
+          });
+        },
+      });
     }
   }
-
 }

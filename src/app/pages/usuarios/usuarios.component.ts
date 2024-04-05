@@ -10,15 +10,18 @@ import { PermisosDirective } from '../../core/directives/permisos/permisos.direc
   standalone: true,
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
-  imports: [TableComponent, ReactiveFormsModule, ModalComponent, FormsModule, PermisosDirective],
+  imports: [
+    TableComponent,
+    ReactiveFormsModule,
+    ModalComponent,
+    FormsModule,
+    PermisosDirective,
+  ],
 })
-
-export class UsuariosComponent extends BaseUsuariosComponent{
-
+export class UsuariosComponent extends BaseUsuariosComponent {
   override obtenerUsuarios(): void {
     this.userServ.getUsuarios().subscribe((data: any) => {
       this.usuarios = this.transformarUsuarios(data.usuarios);
     });
   }
-
 }

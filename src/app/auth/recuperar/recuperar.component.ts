@@ -66,16 +66,16 @@ export class RecuperarComponent implements OnInit, OnDestroy {
           },
           error: (error: any) => {
             Swal.fire({
-              title: "Error en la solicitud",
+              title: 'Error en la solicitud',
               text: error.error.msg,
-              icon: "error"
+              icon: 'error',
             });
           },
         });
     } else {
       Swal.fire({
-        title: "formulario invalido, por favor rellene bien los campos",
-        icon: "warning"
+        title: 'formulario invalido, por favor rellene bien los campos',
+        icon: 'warning',
       });
     }
   }
@@ -84,12 +84,12 @@ export class RecuperarComponent implements OnInit, OnDestroy {
     this.contador = setInterval(() => {
       if (tiempoExpiracion > 0) {
         tiempoExpiracion--;
-        this.tiempoExpiracion = tiempoExpiracion; 
+        this.tiempoExpiracion = tiempoExpiracion;
       } else {
         clearInterval(this.contador);
         console.log('El tiempo de expiración del token ha llegado a cero.');
       }
-    }, 1000); 
+    }, 1000);
   }
 
   formatoTiempo(tiempo: number): string {
@@ -115,8 +115,8 @@ export class RecuperarComponent implements OnInit, OnDestroy {
         this.autenticacionService.cambiarContraseña(nuevaContrasena).subscribe({
           next: () => {
             Swal.fire({
-              title: "Nueva contraseña establecida",
-              icon: "success"
+              title: 'Nueva contraseña establecida',
+              icon: 'success',
             });
             this.onModalClose();
             this.router.navigate(['']);
@@ -124,22 +124,22 @@ export class RecuperarComponent implements OnInit, OnDestroy {
           },
           error: (error: any) => {
             Swal.fire({
-              title: "No se pudo ingresar la nueva contraseña",
+              title: 'No se pudo ingresar la nueva contraseña',
               text: error.error.msg,
-              icon: "error"
+              icon: 'error',
             });
           },
         });
       } else {
         Swal.fire({
-          title: "las contraseñas deben coincidir",
-          icon: "warning"
+          title: 'las contraseñas deben coincidir',
+          icon: 'warning',
         });
       }
     } else {
       Swal.fire({
-        title: "completa el formulario adecuadamente",
-        icon: "error"
+        title: 'completa el formulario adecuadamente',
+        icon: 'error',
       });
     }
   }

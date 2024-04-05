@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios/usuario.service';
 import { UsuarioModel } from '../../core/models/usuario.model';
 import { Router } from '@angular/router';
@@ -13,12 +20,16 @@ import Swal from 'sweetalert2';
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
 })
-export class RegistroComponent implements OnInit{
+export class RegistroComponent implements OnInit {
   password: string = '';
   showPassword: boolean = false;
   registroForm: FormGroup;
 
-  constructor(private userService: UsuariosService, private fb: FormBuilder, private router: Router){}
+  constructor(
+    private userService: UsuariosService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.regisForm();
@@ -35,8 +46,8 @@ export class RegistroComponent implements OnInit{
       login: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirm_password: ['', [Validators.required, this.passValidar()]],
-    });   
-  };
+    });
+  }
 
   passValidar() {
     return (control: AbstractControl) => {
@@ -64,24 +75,24 @@ export class RegistroComponent implements OnInit{
       this.userService.crearUsuario(usuario).subscribe({
         next: () => {
           Swal.fire({
-            title: "Usuario creado con exito",
-            icon: "success"
-          });;
+            title: 'Usuario creado con exito',
+            icon: 'success',
+          });
           this.registroForm.reset();
           this.router.navigate(['']);
         },
         error: (error) => {
           Swal.fire({
-            title: "Error al crear usuario",
+            title: 'Error al crear usuario',
             text: error.error.msg,
-            icon: "error"
+            icon: 'error',
           });
-        }
+        },
       });
     } else {
       Swal.fire({
-        title: "Por favor rellene los datos del formulario de manera adecuada",
-        icon: "warning"
+        title: 'Por favor rellene los datos del formulario de manera adecuada',
+        icon: 'warning',
       });
     }
   }

@@ -10,20 +10,20 @@ import Swal from 'sweetalert2';
 const base_url = environment.base_url;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AutenticacionService {
   private loginEvent = new Subject<void>();
   private logoutEvent = new Subject<void>();
   usuario: UsuarioModel | null;
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   private get headers() {
     return {
       headers: {
         'x-token-pass': localStorage.getItem('x-token-pass') || '',
-      }
+      },
     };
   }
 
@@ -35,64 +35,66 @@ export class AutenticacionService {
     return this.logoutEvent;
   }
 
-  get token(): string{
+  get token(): string {
     return localStorage.getItem(`token`) || ``;
   }
 
-  validateToken(): Observable<boolean>{
-    return this.httpClient.get(`${base_url}/auth`, {
-      headers:{
-        'x-token': this.token,
-      },
-    }).pipe(
-      map((resp: any)=>{
-        const {
-          _id,
-          nombre,
-          email,
-          celular,
-          direccion,
-          tipoDocumento,
-          numeroDocumento,
-          login,
-          password,
-          rol,
-          estado,
-          createdAt,
-          updatedAt
-        } = resp.usuario;
-  
-        this.usuario = new UsuarioModel(
-          nombre,
-          email,
-          celular,
-          direccion,
-          tipoDocumento,
-          numeroDocumento,
-          login,
-          password,
-          rol,
-          estado,
-          createdAt,
-          updatedAt,
-          _id,
-        );
-        this.usuario.direccion = '';
-        this.usuario.celular = 0;
-        this.usuario.tipoDocumento = '';
-        this.usuario.password = '';
-        this.usuario.numeroDocumento = '';
-        localStorage.setItem('usuario', JSON.stringify(this.usuario));
-        localStorage.setItem('token', resp.token);
-        return true;
-      }),
-      catchError((error) => {
-        console.error(error);
-        return of(false);
+  validateToken(): Observable<boolean> {
+    return this.httpClient
+      .get(`${base_url}/auth`, {
+        headers: {
+          'x-token': this.token,
+        },
       })
-    );
+      .pipe(
+        map((resp: any) => {
+          const {
+            _id,
+            nombre,
+            email,
+            celular,
+            direccion,
+            tipoDocumento,
+            numeroDocumento,
+            login,
+            password,
+            rol,
+            estado,
+            createdAt,
+            updatedAt,
+          } = resp.usuario;
+
+          this.usuario = new UsuarioModel(
+            nombre,
+            email,
+            celular,
+            direccion,
+            tipoDocumento,
+            numeroDocumento,
+            login,
+            password,
+            rol,
+            estado,
+            createdAt,
+            updatedAt,
+            _id
+          );
+          this.usuario.direccion = '';
+          this.usuario.celular = 0;
+          this.usuario.tipoDocumento = '';
+          this.usuario.password = '';
+          this.usuario.numeroDocumento = '';
+          localStorage.setItem('usuario', JSON.stringify(this.usuario));
+          localStorage.setItem('token', resp.token);
+          return true;
+        }),
+        catchError((error) => {
+          console.error(error);
+          return of(false);
+        })
+      );
   }
-  
+
   login(login: LoginInterfaces) {
     return this.httpClient.post(`${base_url}/auth`, login).pipe(
       tap((resp: any) => {
@@ -104,7 +106,7 @@ export class AutenticacionService {
     );
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     this.logoutEvent.next();
@@ -114,10 +116,10 @@ export class AutenticacionService {
   private tokenExpired(): boolean {
     const token = localStorage.getItem('token');
     const tokenPayload = token ? JSON.parse(atob(token.split('.')[1])) : null;
-    const tokenExpiration = tokenPayload?.exp * 1000; 
-    return tokenExpiration ? Date.now() >= tokenExpiration : false; 
+    const tokenExpiration = tokenPayload?.exp * 1000;
+    return tokenExpiration ? Date.now() >= tokenExpiration : false;
   }
-  
+
   logoutExpiredSession(): void {
     if (this.tokenExpired()) {
       localStorage.removeItem('token');
@@ -126,19 +128,25 @@ export class AutenticacionService {
       this.router.navigateByUrl('');
       // Mostrar mensaje al usuario
       Swal.fire({
-        title: "Ingresa nuevamente",
-        text: "Tu sesión ha expirado",
-        icon: "warning"
+        title: 'Ingresa nuevamente',
+        text: 'Tu sesión ha expirado',
+        icon: 'warning',
       });
     }
   }
 
   recuperarContraseña(email: string, numeroDocumento: string): Observable<any> {
-    return this.httpClient.post(`${base_url}/auth/validate`, { email, numeroDocumento });
+    return this.httpClient.post(`${base_url}/auth/validate`, {
+      email,
+      numeroDocumento,
+    });
   }
 
   cambiarContraseña(nuevaContraseña: string): Observable<any> {
-    return this.httpClient.put(`${base_url}/auth/validate`, { password: nuevaContraseña }, this.headers);
+    return this.httpClient.put(
+      `${base_url}/auth/validate`,
+      { password: nuevaContraseña },
+      this.headers
+    );
   }
-
 }
