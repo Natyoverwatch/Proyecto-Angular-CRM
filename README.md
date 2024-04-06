@@ -204,15 +204,18 @@ Asegúrate de tener acceso a MongoDB e instalado MongoDB Compass en tu sistema.
 
   1. Abre MongoDB Compass.
 
-  ![inicio MongoDB Compass](image.png)
+  ![inicio MongoDB Compass](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/08f9a4b9-eac2-4f64-ab1f-cacbacdc5826)
+
 
   2. Haz clic en el botón "New Connection" para crear una nueva conexión.
 
-  ![MongoDB Compass - "New Connection"](image-1.png)
+  ![MongoDB Compass - "New Connection"](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/07e2201f-e5e8-4e95-96fa-ca3e41be41a3)
+
 
   3. Selecciona la opción "Connect using MongoDB Compass".
 
-  ![MongoDB Compass - "Connect using MongoDB Compass"](image-2.png)
+  ![MongoDB Compass - "Connect using MongoDB Compass"](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/daaa3a8c-fd4a-4455-8e9d-e2e5cbddd0fc)
+
 
   4. En el campo "Connection String", pega la siguiente cadena de conexión:
      ```
@@ -220,11 +223,13 @@ Asegúrate de tener acceso a MongoDB e instalado MongoDB Compass en tu sistema.
      ```
      Asegúrate de reemplazar `<username>` y `<password>` con los valores proporcionados (en este caso, `UsuarioTaylor` y `nom68hBqleG8PDjU` respectivamente).
 
-  ![MongoDB Compass - "Connection String"](image-3.png)
+  ![MongoDB Compass - "Connection String"](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/04542d36-6539-426e-b658-850ad14e7418)
+
 
   5. Haz clic en el botón "Connect" para iniciar la conexión.
 
-  ![MongoDB Compass - "Connect"](image-4.png)
+  ![MongoDB Compass - "Connect"](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/7a801dc0-7c4d-4d68-b598-85852b6ea1a7)
+
 
   6. Si se solicita, ingresa la contraseña asociada al usuario `UsuarioTaylor`.
 
@@ -1090,7 +1095,8 @@ A continuación se presentarán los diferentes casos de uso para los distintos r
 
 Para acceder a la página web, abre tu navegador web e ingresa al siguiente enlace: [url](https://endearing-hamster-47a100.netlify.app/).
 
-![Acceso a la Página Web](image-5.png)
+![Acceso a la Página Web](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/bff255e7-0ef5-4d31-be45-7188614bdecc)
+
 
 ### Registro (Clientes)
 
@@ -1098,7 +1104,8 @@ Para acceder a la página web, abre tu navegador web e ingresa al siguiente enla
 2. Completa el formulario de registro con tu información personal.
 3. Haz clic en "Registrarse" para crear tu cuenta.
 
-![Registro](image-6.png)
+![Registro](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/cde74dc9-3084-458d-adfd-5476c0e24e90)
+
 
 ### Inicio de Sesión
 
@@ -1106,7 +1113,8 @@ Para acceder a la página web, abre tu navegador web e ingresa al siguiente enla
 2. Ingresa tu nombre de usuario y contraseña.
 3. Haz clic en "Inigresa" para acceder al sitio con tu cuenta.
 
-![Inicio de Sesión](image-7.png)
+![Inicio de Sesión](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/086b0cca-393a-46e6-8d6f-e53f38e623b4)
+
 
 ### Agregar Servicio (Clientes)
 
@@ -1114,7 +1122,8 @@ Para acceder a la página web, abre tu navegador web e ingresa al siguiente enla
 2. Completa el formulario con los detalles del servicio a solicitar, como el nombre del servicio y la descripción.
 3. Haz clic en "Enviar solicitud" para agregar la oportunidad - servicio.
 
-![Oportunidades](image-8.png)
+![Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/d6a70d9a-d761-45e2-abc4-52e6d8a9dd00)
+
 
 ### Acceder al Contacto
 
@@ -1132,7 +1141,8 @@ Para acceder a la página web, abre tu navegador web e ingresa al siguiente enla
 
 Para acceder a la página web, abre tu navegador web e ingresa al siguiente enlace: [url](https://endearing-hamster-47a100.netlify.app/).
 
-![Acceso a la Página Web](image-5.png)
+![Acceso a la Página Web](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/cb22ba75-69de-4127-b126-d659c66b7422)
+
 
 ### Registro
 
@@ -1142,7 +1152,8 @@ Los gerentes ya han sido inscritos previamente por el webmaster o desarrollador,
 2. Completa el formulario de registro con tu información personal.
 3. Haz clic en "Registrarse" para crear tu cuenta.
 
-![Registro](image-6.png)
+![Registro](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/14091251-fd11-4827-951a-ff2c8b082875)
+
 
 Luego el gerente podrá cambiar el rol del usuario nuevo de la siguiente forma:
 
@@ -1152,7 +1163,8 @@ Luego el gerente podrá cambiar el rol del usuario nuevo de la siguiente forma:
 4. En acciones selecciona la opción de cambiar rol.
 5. Por ultimo selecciona el rol de gerente y da clic en confirmar.
 
-![Registro Gerente](image-9.png)
+![Registro Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/9db8d936-1614-44b2-bb84-b7e7efeab523)
+
 
 ### Inicio de Sesión
 
@@ -1160,7 +1172,8 @@ Luego el gerente podrá cambiar el rol del usuario nuevo de la siguiente forma:
 2. Ingresa tu nombre de usuario y contraseña.
 3. Haz clic en "Inigresa" para acceder al sitio con tu cuenta.
 
-![Inicio de Sesión](image-7.png)
+![Inicio de Sesión](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/5dfa42e8-ed62-49e1-b508-1c9e324b02e4)
+
 
 ### Asignar asesor
 
@@ -1172,7 +1185,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Seleccione el gestor o asesor.
 5. Haz clic en "confirmar" para realizar la asignación.
 
-![Asignar asesor](image-19.png)
+![Asignar asesor](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/7da56148-bade-48ae-923d-b0dac20c70c1)
+
 
 ### Agregar Oportunidades
 
@@ -1182,7 +1196,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los detalles del servicio a solicitar, como el nombre del servicio y la descripción, no olvides indicar el asesor encargado y el cliente al que se le asigna dicho servicio (oportunidad).
 5. Haz clic en "crear" para agregar la oportunidad.
 
-![Agregar Oportunidades Gerente](image-10.png)
+![Agregar Oportunidades Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/294e540d-4fa6-4ee1-b3d2-69077655bd21)
+
 
 ### Ver Oportunidades
 
@@ -1190,7 +1205,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 2. Selecciona la opción de "Oportunidades".
 3. Allí encontrarás la tabla con todas las oportunidades creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Oportunidades](image-12.png)
+![Ver Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/4e3603e9-29f5-4fa3-9c1f-92f979376983)
+
 
 ### Editar Oportunidades
 
@@ -1200,7 +1216,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la oportunidad.
 
-![Editar Oportunidades](image-13.png)
+![Editar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/2d053266-04a9-464b-b9a6-70bbc320c1fc)
+
 
 ### Eliminar Oportunidades
 
@@ -1209,7 +1226,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 3. Busca la oportunidad que deseas editar, ve a las acciones de la correspondiente oportunidad, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la oportunidad.
 
-![Eliminar Oportunidades](image-14.png)
+![Eliminar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/c30001fe-ad8f-479a-9b5a-6821024862e8)
+
 
 ### Agregar Interacciones
 
@@ -1219,7 +1237,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los detalles de la interacción, como la descripción y la acción.
 5. Haz clic en "crear" para agregar la interacción.
 
-![Agregar Interacciones](image-11.png)
+![Agregar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/9b654e27-a696-4f3f-aa8d-7e74dd06176b)
+
 
 ### Ver Interacciones
 
@@ -1227,7 +1246,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 2. Selecciona la opción de "Interacciones".
 3. Allí encontrarás la tabla con todas las interacciones creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Interacciones](image-15.png)
+![Ver Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/022bca09-52a3-41ed-9a1a-5b08670fc821)
+
 
 ### Editar Interacciones
 
@@ -1237,7 +1257,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la interacción.
 
-![Editar Interacciones](image-16.png)
+![Editar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/17dc094b-d8be-4b17-849d-4ab546e09527)
+
 
 ### Eliminar Interacciones
 
@@ -1246,7 +1267,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 3. Busca la interacción que deseas editar, ve a las acciones de la correspondiente interacción, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la interacción.
 
-![Eliminar Interacciones](image-17.png)
+![Eliminar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/cc664421-2da0-40b5-84a7-6a01a69b37a2)
+
 
 ### Ver Estadísticas
 
@@ -1254,7 +1276,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 2. Navega a la sección de "Estadísticas".
 3. Aquí podrás ver diferentes gráficos relacionados con tus oportunidades.
 
-![Gráficas](image-18.png)
+![Gráficas](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/91fe89cd-af0e-4e55-946b-17351657d2cc)
+
 
 ### Acceder al Contacto
 
@@ -1272,7 +1295,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 
 Para acceder a la página web, abre tu navegador web e ingresa al siguiente enlace: [url](https://endearing-hamster-47a100.netlify.app/).
 
-![Acceso a la Página Web](image-5.png)
+![Acceso a la Página Web](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/9b2055b5-7db6-47d8-9350-de89ed26477c)
+
 
 ### Registro
 
@@ -1284,7 +1308,8 @@ Para el registro como supervisores el gerente podrá cambiar el rol del usuario 
 4. En acciones selecciona la opción de cambiar rol.
 5. Por ultimo selecciona el rol de gerente y da clic en confirmar.
 
-![Registro Gerente](image-9.png)
+![Registro Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/f25e7837-ac1a-489d-9c68-15f401c2bbb2)
+
 
 ### Inicio de Sesión
 
@@ -1292,7 +1317,8 @@ Para el registro como supervisores el gerente podrá cambiar el rol del usuario 
 2. Ingresa tu nombre de usuario y contraseña.
 3. Haz clic en "Inigresa" para acceder al sitio con tu cuenta.
 
-![Inicio de Sesión](image-7.png)
+![Inicio de Sesión](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/12bc00dc-98c8-4a2d-b18f-4676f1e9302d)
+
 
 ### Asignar asesor
 
@@ -1304,7 +1330,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Seleccione el gestor o asesor.
 5. Haz clic en "confirmar" para realizar la asignación.
 
-![Asignar asesor](image-19.png)
+![Asignar asesor](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/cbbc3508-7ec2-4e68-85e1-ac18eb218101)
+
 
 ### Agregar Oportunidades
 
@@ -1314,7 +1341,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los detalles del servicio a solicitar, como el nombre del servicio y la descripción, no olvides indicar el asesor encargado y el cliente al que se le asigna dicho servicio (oportunidad).
 5. Haz clic en "crear" para agregar la oportunidad.
 
-![Agregar Oportunidades Gerente](image-10.png)
+![Agregar Oportunidades Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/bb4f3a95-a8e4-4f43-847b-7c419239a25c)
+
 
 ### Ver Oportunidades
 
@@ -1322,7 +1350,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 2. Selecciona la opción de "Oportunidades".
 3. Allí encontrarás la tabla con todas las oportunidades creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Oportunidades](image-12.png)
+![Ver Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/6a3bb069-0ad9-414d-b67f-83af8a757998)
+
 
 ### Editar Oportunidades
 
@@ -1332,7 +1361,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la oportunidad.
 
-![Editar Oportunidades](image-13.png)
+![Editar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/874ff558-5da6-4e7d-9274-02aa745911f2)
+
 
 ### Eliminar Oportunidades
 
@@ -1341,7 +1371,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 3. Busca la oportunidad que deseas editar, ve a las acciones de la correspondiente oportunidad, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la oportunidad.
 
-![Eliminar Oportunidades](image-14.png)
+![Eliminar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/b9a7752d-d6b8-45eb-882a-98e92361da15)
+
 
 ### Agregar Interacciones
 
@@ -1351,7 +1382,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los detalles de la interacción, como la descripción y la acción.
 5. Haz clic en "crear" para agregar la interacción.
 
-![Agregar Interacciones](image-11.png)
+![Agregar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/bca3838d-df97-4bab-8672-709f125eb91d)
+
 
 ### Ver Interacciones
 
@@ -1359,7 +1391,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 2. Selecciona la opción de "Interacciones".
 3. Allí encontrarás la tabla con todas las interacciones creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Interacciones](image-15.png)
+![Ver Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/63f11b9a-5c0e-4d45-a878-bc980a8c06e2)
+
 
 ### Editar Interacciones
 
@@ -1369,7 +1402,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la interacción.
 
-![Editar Interacciones](image-16.png)
+![Editar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/ee42dc06-2a70-4d1f-8311-dc35f0935344)
+
 
 ### Eliminar Interacciones
 
@@ -1378,7 +1412,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 3. Busca la interacción que deseas editar, ve a las acciones de la correspondiente interacción, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la interacción.
 
-![Eliminar Interacciones](image-17.png)
+![Eliminar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/f966e749-4f8d-42f4-b91f-2f1efd7d0a4b)
+
 
 ### Acceder al Contacto
 
@@ -1396,7 +1431,8 @@ Cuando la oportunidad es creada por un Cliente esta se crea sin el asesor asigna
 
 Para acceder a la página web, abre tu navegador web e ingresa al siguiente enlace: [url](https://endearing-hamster-47a100.netlify.app/).
 
-![Acceso a la Página Web](image-5.png)
+![Acceso a la Página Web](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/e63caf56-a650-4c0e-8db4-c7588bfdcbad)
+
 
 ### Registro
 
@@ -1408,7 +1444,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 4. En acciones selecciona la opción de cambiar rol.
 5. Por ultimo selecciona el rol de gerente y da clic en confirmar.
 
-![Registro Gerente](image-9.png)
+![Registro Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/5219a3f0-6ef9-47d9-a371-42aba05b0d82)
+
 
 ### Inicio de Sesión
 
@@ -1416,7 +1453,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 2. Ingresa tu nombre de usuario y contraseña.
 3. Haz clic en "Inigresa" para acceder al sitio con tu cuenta.
 
-![Inicio de Sesión](image-7.png)
+![Inicio de Sesión](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/83802130-6cdc-46a5-863e-86141da6ed07)
+
 
 
 ### Agregar Oportunidades
@@ -1427,7 +1465,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 4. Completa el formulario con los detalles del servicio a solicitar, como el nombre del servicio y la descripción, no olvides indicar el asesor encargado y el cliente al que se le asigna dicho servicio (oportunidad).
 5. Haz clic en "crear" para agregar la oportunidad.
 
-![Agregar Oportunidades Gerente](image-10.png)
+![Agregar Oportunidades Gerente](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/5dc41001-577d-4b81-a11d-cbcc56f05811)
+
 
 ### Ver Oportunidades
 
@@ -1435,7 +1474,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 2. Selecciona la opción de "Oportunidades".
 3. Allí encontrarás la tabla con todas las oportunidades creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Oportunidades](image-12.png)
+![Ver Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/f50c9d15-90bb-4d42-be9d-9b17c9a3ce20)
+
 
 ### Editar Oportunidades
 
@@ -1445,7 +1485,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la oportunidad.
 
-![Editar Oportunidades](image-13.png)
+![Editar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/a31a0fa7-c419-4304-8a9f-a659b19c0db5)
+
 
 ### Eliminar Oportunidades
 
@@ -1454,7 +1495,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 3. Busca la oportunidad que deseas editar, ve a las acciones de la correspondiente oportunidad, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la oportunidad.
 
-![Eliminar Oportunidades](image-14.png)
+![Eliminar Oportunidades](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/d369014d-bd40-4696-ad8f-9502a98a7d2d)
+
 
 ### Agregar Interacciones
 
@@ -1464,7 +1506,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 4. Completa el formulario con los detalles de la interacción, como la descripción y la acción.
 5. Haz clic en "crear" para agregar la interacción.
 
-![Agregar Interacciones](image-11.png)
+![Agregar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/4801e1bf-3985-4113-9c89-40b883f1aa9d)
+
 
 ### Ver Interacciones
 
@@ -1472,7 +1515,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 2. Selecciona la opción de "Interacciones".
 3. Allí encontrarás la tabla con todas las interacciones creadas junto con las acciones posibles a relaizar a cada una.
 
-![Ver Interacciones](image-15.png)
+![Ver Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/7856aa90-0ceb-45bf-903f-ed7f0d092918)
+
 
 ### Editar Interacciones
 
@@ -1482,7 +1526,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 4. Completa el formulario con los datos a editar.
 5. Haz clic en "Guardar Cambios" para cambiar la interacción.
 
-![Editar Interacciones](image-16.png)
+![Editar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/2c3b9e10-9b81-4f14-a6c7-20cc8289bbf3)
+
 
 ### Eliminar Interacciones
 
@@ -1491,7 +1536,8 @@ Para el registro como asesores el gerente podrá cambiar el rol del usuario nuev
 3. Busca la interacción que deseas editar, ve a las acciones de la correspondiente interacción, haz clic en el botón "eliminar".
 4. Confirma la acción para eliminar la interacción.
 
-![Eliminar Interacciones](image-17.png)
+![Eliminar Interacciones](https://github.com/Natyoverwatch/Proyecto-Angular-CRM/assets/119448423/b8693974-9e20-4edc-bfb8-6e19802746ec)
+
 
 ### Acceder al Contacto
 
